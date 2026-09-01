@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billy Jes | Full-Stack Developer & AI Researcher</title>
+  <meta name="description" content="Portofolio interaktif Billy Jes - Full Stack Engineer, AI Researcher dengan fitur gantungan lanyard berfisika, proyek, dan publikasi jurnal ilmiah." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="dark-theme">
+  <!-- Custom Pointer Cursor -->
+  <div id="custom-cursor" class="custom-cursor"></div>
+  <div id="cursor-dot" class="cursor-dot"></div>
+
+  <!-- Ambient Dynamic Spotlight Background -->
+  <div id="bg-spotlight" class="bg-spotlight"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-header" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" data-cursor="pointer">
+        Billy<span class="brand-accent">Jes</span>
+      </a>
+
+      <nav class="nav-links" id="nav-menu">
+        <a href="#hero" class="nav-link active" data-cursor="pointer">Home</a>
+        <a href="#about" class="nav-link" data-cursor="pointer">Tentang</a>
+        <a href="#skills" class="nav-link" data-cursor="pointer">Keahlian</a>
+        <a href="#projects" class="nav-link" data-cursor="pointer">Proyek</a>
+        <a href="#experience" class="nav-link" data-cursor="pointer">Pengalaman</a>
+        <a href="#journals" class="nav-link" data-cursor="pointer">Jurnal</a>
+        <a href="#contact" class="nav-link" data-cursor="pointer">Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm" data-cursor="pointer">
+          <span>Hire Me</span>
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Physics Lanyard Canvas Overlay (Hangs from 0px Window Ceiling down to About) -->
+  <canvas id="lanyard-canvas"></canvas>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container">
+        <!-- Hero Text Column (Centered & Clean) -->
+        <div class="hero-content hero-content-full">
+          <div class="status-badge" data-cursor="pointer">
+            <span class="pulse-dot"></span>
+            <span>Available for Freelance & Full-time</span>
+          </div>
+
+          <h1 class="hero-title">
+            Halo! Saya <span class="text-gradient">Billy Jes</span>,<br />
+            <span class="typing-text" id="typing-element"></span><span class="cursor-blink">|</span>
+          </h1>
+
+          <p class="hero-description">
+            Lulusan baru (Fresh Graduate) bersemangat tinggi di bidang Web Development & Software Engineering. Siap berkontribusi membangun aplikasi web modern, interaktif, dan berkualitas tinggi.
+          </p>
+
+          <!-- Hero Social Media Icon Bar -->
+          <div class="hero-social-bar">
+            <a href="https://github.com/Belajargihh" target="_blank" rel="noopener" class="social-icon-btn github" title="GitHub" data-cursor="pointer" data-tooltip="GitHub">
+              <img src="https://api.iconify.design/simple-icons:github.svg?color=%230f172a" alt="GitHub" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon-btn linkedin" title="LinkedIn" data-cursor="pointer" data-tooltip="LinkedIn">
+              <img src="https://api.iconify.design/simple-icons:linkedin.svg?color=%230a66c2" alt="LinkedIn" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn instagram" title="Instagram" data-cursor="pointer" data-tooltip="Instagram">
+              <img src="https://api.iconify.design/simple-icons:instagram.svg?color=%23e4405f" alt="Instagram" />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn facebook" title="Facebook" data-cursor="pointer" data-tooltip="Facebook">
+              <img src="https://api.iconify.design/simple-icons:facebook.svg?color=%231877f2" alt="Facebook" />
+            </a>
+            <a href="https://kaggle.com" target="_blank" rel="noopener" class="social-icon-btn kaggle" title="Kaggle" data-cursor="pointer" data-tooltip="Kaggle">
+              <img src="https://api.iconify.design/simple-icons:kaggle.svg?color=%2320beff" alt="Kaggle" />
+            </a>
+            <a href="https://wa.me/6282198094387?text=Halo%20Billy,%20saya%20tertarik%20untuk%20diskusi%20project" target="_blank" rel="noopener" class="social-icon-btn whatsapp" title="WhatsApp" data-cursor="pointer" data-tooltip="WhatsApp">
+              <img src="https://api.iconify.design/simple-icons:whatsapp.svg?color=%2325d366" alt="WhatsApp" />
+            </a>
+            <a href="/profile.png" download="CV-Billy-Jes.png" class="social-icon-btn cv-pill" title="Download CV" data-cursor="pointer" data-tooltip="Download CV">
+              <img src="https://api.iconify.design/lucide:download.svg?color=%23ffffff" alt="Download" />
+              <span>CV</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-down" data-cursor="pointer">
+        <span>Scroll Down</span>
+        <i data-lucide="chevron-down"></i>
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION (Wider Terminal Window + Simple Clean Text) -->
+    <section id="about" class="about-section">
+      <div class="section-container">
+        <div class="section-header center">
+          <div class="section-tag">
+            <i data-lucide="terminal"></i>
+            <span>TENTANG SAYA</span>
+          </div>
+          <h2 class="section-title">Profil <span class="text-gradient">Saya</span></h2>
+        </div>
+
+        <div class="about-clean-grid">
+          <!-- Left Column: Linux Developer Terminal Window (Wider & Simplified Text) -->
+          <div class="terminal-card bio-card-clean" data-tilt>
+            <!-- Terminal Header Bar -->
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot close"></span>
+                <span class="dot minimize"></span>
+                <span class="dot maximize"></span>
+              </div>
+              <div class="terminal-title">
+                <i data-lucide="terminal"></i>
+                <span>billy@jes-portfolio:~ (zsh)</span>
+              </div>
+              <div class="terminal-badge">zsh 5.9</div>
+            </div>
+
+            <!-- Terminal Content Body -->
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">billy@jes:~$</span> <span class="command">cat tentang-saya.txt</span>
+              </div>
+
+              <div class="terminal-output">
+                <div class="code-block">
+                  <span class="text-highlight">Halo! Saya Billy Jes 👋</span><br/><br/>
+                  Saya seorang <strong>Full-Stack Web Developer & AI Specialist</strong> yang membantu mewujudkan aplikasi web modern, cepat, indah, dan mudah digunakan.<br/><br/>
+                  Berpengalaman membangun tampilan web interaktif, sistem backend yang aman dan cepat, serta teknologi AI untuk solusi bisnis Anda.
+                </div>
+              </div>
+
+              <div class="terminal-line margin-top">
+                <span class="prompt">billy@jes:~$</span> <span class="command">cat status.json</span>
+              </div>
+              <div class="terminal-output highlight">
+                <span class="json-key">"status"</span>: <span class="json-string">"🟢 Open for Freelance & Full-Time Work"</span>
+              </div>
+
+              <div class="terminal-line active-line">
+                <span class="prompt">billy@jes:~$</span> <span class="terminal-cursor"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Lanyard Hanging Zone Placeholder -->
+          <div class="about-lanyard-zone" id="about-lanyard-zone"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & TOOLS SECTION (Logo + Name Only) -->
+    <section id="skills" class="skills-section">
+      <div class="section-container">
+        <div class="section-header center">
+          <div class="section-tag">
+            <i data-lucide="cpu"></i>
+            <span>KEAHLIAN TEKNIS</span>
+          </div>
+          <h2 class="section-title">Teknologi & <span class="text-gradient">Tools Pengalaman</span></h2>
+        </div>
+
+        <div class="skills-tabs">
+          <button class="tab-btn active" data-tab="all" data-cursor="pointer">Semua</button>
+          <button class="tab-btn" data-tab="frontend" data-cursor="pointer">Frontend</button>
+          <button class="tab-btn" data-tab="backend" data-cursor="pointer">Backend & Bahasa</button>
+          <button class="tab-btn" data-tab="tools" data-cursor="pointer">Tools & Platform AI</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Frontend -->
+          <div class="skill-card" data-category="frontend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+            </div>
+            <div class="skill-info"><h4>HTML5</h4></div>
+          </div>
+          <div class="skill-card" data-category="frontend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+            </div>
+            <div class="skill-info"><h4>CSS3</h4></div>
+          </div>
+          <div class="skill-card" data-category="frontend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+            </div>
+            <div class="skill-info"><h4>JavaScript</h4></div>
+          </div>
+          <div class="skill-card" data-category="frontend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
+            </div>
+            <div class="skill-info"><h4>Next.js</h4></div>
+          </div>
+
+          <!-- Backend & Bahasa -->
+          <div class="skill-card" data-category="backend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+            </div>
+            <div class="skill-info"><h4>Node.js</h4></div>
+          </div>
+          <div class="skill-card" data-category="backend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" />
+            </div>
+            <div class="skill-info"><h4>Express.js</h4></div>
+          </div>
+          <div class="skill-card" data-category="backend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+            </div>
+            <div class="skill-info"><h4>Python</h4></div>
+          </div>
+          <div class="skill-card" data-category="backend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" />
+            </div>
+            <div class="skill-info"><h4>C#</h4></div>
+          </div>
+          <div class="skill-card" data-category="backend" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" />
+            </div>
+            <div class="skill-info"><h4>PHP</h4></div>
+          </div>
+
+          <!-- Tools & Platform AI -->
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+            </div>
+            <div class="skill-info"><h4>Git</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+            </div>
+            <div class="skill-info"><h4>GitHub</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original.svg" alt="Kaggle" />
+            </div>
+            <div class="skill-info"><h4>Kaggle</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" alt="Google Colab" />
+            </div>
+            <div class="skill-info"><h4>Google Colab</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase" />
+            </div>
+            <div class="skill-info"><h4>Supabase</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" />
+            </div>
+            <div class="skill-info"><h4>Firebase</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel" />
+            </div>
+            <div class="skill-info"><h4>Vercel</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Xampp_logo.svg" alt="XAMPP" />
+            </div>
+            <div class="skill-info"><h4>XAMPP</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" />
+            </div>
+            <div class="skill-info"><h4>Hugging Face</h4></div>
+          </div>
+          <div class="skill-card" data-category="tools" data-tilt data-cursor="pointer">
+            <div class="skill-icon">
+              <img src="https://api.iconify.design/simple-icons:langchain.svg?color=%231C3C3C" alt="LangChain" />
+            </div>
+            <div class="skill-info"><h4>LangChain</h4></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION (3x2 Grid + Pagination) -->
+    <section id="projects" class="projects-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">
+              <i data-lucide="folder-git-2"></i>
+              <span>PORTFOLIO PROYEK</span>
+            </div>
+            <h2 class="section-title">Karya & <span class="text-gradient">Project Utama</span></h2>
+          </div>
+          
+          <div class="project-filters">
+            <button class="filter-btn active" data-filter="all" data-cursor="pointer">Semua</button>
+            <button class="filter-btn" data-filter="webapp" data-cursor="pointer">Web App</button>
+            <button class="filter-btn" data-filter="ai" data-cursor="pointer">AI & ML</button>
+            <button class="filter-btn" data-filter="desktop" data-cursor="pointer">Desktop</button>
+          </div>
+        </div>
+
+        <!-- 3x2 Grid Container -->
+        <div class="projects-grid" id="projects-grid"></div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-wrapper" id="projects-pagination"></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE / PAST PROJECTS SECTION (3x2 Grid + Pagination) -->
+    <section id="experience" class="timeline-section">
+      <div class="section-container">
+        <div class="section-header center">
+          <div class="section-tag">
+            <i data-lucide="briefcase"></i>
+            <span>REKAM JEJAK KARYA</span>
+          </div>
+          <h2 class="section-title">Pengalaman & <span class="text-gradient">Project Pekerjaan</span></h2>
+        </div>
+
+        <!-- 3x2 Grid Container for Experience -->
+        <div class="projects-grid" id="experience-grid"></div>
+
+        <!-- Pagination Controls for Experience -->
+        <div class="pagination-wrapper" id="experience-pagination"></div>
+      </div>
+    </section>
+
+    <!-- ARTIKEL & JURNAL ILMIAH SECTION (3x2 Grid + Pagination) -->
+    <section id="journals" class="journals-section">
+      <div class="section-container">
+        <div class="section-header center">
+          <div class="section-tag">
+            <i data-lucide="book-open"></i>
+            <span>PUBLIKASI ILMIAH</span>
+          </div>
+          <h2 class="section-title">Artikel & <span class="text-gradient">Jurnal Penelitian</span></h2>
+        </div>
+
+        <!-- 3x2 Grid Container for Journals -->
+        <div class="projects-grid" id="journals-grid"></div>
+
+        <!-- Pagination Controls for Journals -->
+        <div class="pagination-wrapper" id="journals-pagination"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+      <div class="section-container">
+        <div class="contact-card-glass">
+          <div class="contact-info">
+            <div class="section-tag">
+              <i data-lucide="send"></i>
+              <span>HUBUNGI SAYA</span>
+            </div>
+            <h2 class="section-title">Punya Project <span class="text-gradient">Menarik?</span></h2>
+            <p class="contact-subtext">
+              Mari berdiskusi! Saya siap membantu mewujudkan aplikasi web dan proyek AI impian Anda.
+            </p>
+
+            <div class="contact-methods">
+              <a href="mailto:billysorong112@gmail.com" class="method-item" data-cursor="pointer">
+                <div class="method-icon"><i data-lucide="mail"></i></div>
+                <div>
+                  <div class="method-label">Email Direct</div>
+                  <div class="method-val">billysorong112@gmail.com</div>
+                </div>
+              </a>
+
+              <a href="https://wa.me/6282198094387?text=Halo%20Billy,%20saya%20tertarik%20untuk%20diskusi%20project" target="_blank" rel="noopener" class="method-item" data-cursor="pointer">
+                <div class="method-icon whatsapp"><i data-lucide="message-circle"></i></div>
+                <div>
+                  <div class="method-label">WhatsApp Fast Response</div>
+                  <div class="method-val">+62 821-9809-4387</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper">
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" required placeholder="Masukkan nama Anda" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required placeholder="contoh@domain.com" />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subjek / Jenis Project</label>
+                <input type="text" id="subject" required placeholder="Web Development / Research Collaboration" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Pesan Anda</label>
+                <textarea id="message" rows="4" required placeholder="Jelaskan kebutuhan project Anda..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submit-btn" data-cursor="pointer">
+                <span>Kirim Pesan</span>
+                <i data-lucide="send"></i>
+              </button>
+              
+              <div id="form-response" class="form-response"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" data-cursor="pointer"><i data-lucide="x"></i></button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="nav-brand">Billy<span class="brand-accent">Jes</span></a>
+        <p>&copy; 2026 Billy Jes. All rights reserved. Crafted with Passion & Physics.</p>
+      </div>
+
+      <button id="back-to-top" class="btn btn-outline btn-circle" title="Kembali ke atas" data-cursor="pointer">
+        <i data-lucide="arrow-up"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
