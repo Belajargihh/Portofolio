@@ -1,7 +1,4 @@
-/* ==========================================================================
-   EXPERIENCE / PAST WORK PROJECTS (3x2 GRID WITH PAGINATION & SAFE ICONS)
-   ========================================================================== */
-
+import * as lucide from 'lucide';
 import { experienceData } from '../data/experience.js';
 
 let currentExpPage = 1;
@@ -22,19 +19,36 @@ export function renderExperience(page = 1) {
   container.innerHTML = paginatedItems.map(item => `
     <div class="project-card exp-card" data-tilt data-cursor="pointer">
       <div class="project-img-wrapper">
-        <img src="${item.image}" alt="${item.title}" class="project-img" loading="lazy" />
+        <img src="${item.image}" alt="${item.role}" class="project-img" loading="lazy" />
         <div class="exp-period-badge"><i data-lucide="calendar"></i> ${item.period}</div>
       </div>
-      <div class="project-body">
+      <div class="project-body exp-body">
         <div class="project-tags">
           ${(item.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
         </div>
-        <div class="exp-company"><i data-lucide="building-2"></i> ${item.company}</div>
-        <h3 class="project-title" style="font-size:1.15rem;">${item.role}</h3>
-        <p class="project-desc"><strong>${item.title}:</strong> ${item.desc}</p>
-        <div class="exp-highlights">
-          ${(item.highlights || []).map(h => `<div class="exp-bullet"><i data-lucide="check-circle-2"></i> <span>${h}</span></div>`).join('')}
+        
+        <div class="exp-header-info">
+          <h3 class="exp-company-title">
+            <i data-lucide="building-2"></i> ${item.company}
+          </h3>
+          ${item.location ? `
+            <div class="exp-location">
+              <i data-lucide="map-pin"></i> ${item.location}
+            </div>
+          ` : ''}
+          <div class="exp-role-badge">
+            <i data-lucide="briefcase"></i> ${item.role}
+          </div>
         </div>
+
+        <ul class="exp-bullet-list">
+          ${(item.highlights || []).map(h => `
+            <li class="exp-bullet-item">
+              <i data-lucide="check-circle-2"></i>
+              <span>${h}</span>
+            </li>
+          `).join('')}
+        </ul>
       </div>
     </div>
   `).join('');
@@ -46,8 +60,8 @@ export function renderExperience(page = 1) {
   });
 
   try {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
+    if (lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons({ icons: lucide });
     }
   } catch (e) {
     console.warn(e);

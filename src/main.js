@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     window.lucide = lucide;
     if (lucide && typeof lucide.createIcons === 'function') {
-      lucide.createIcons();
+      lucide.createIcons({ icons: lucide });
     }
   } catch (e) {
     console.warn('Lucide init warning:', e);

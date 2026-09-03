@@ -1,5 +1,6 @@
 /* ==========================================================================
-   PERFECT HANGING LANYARD ENGINE (Snug Side-by-Side with Wider Terminal)
+   PERFECT HANGING 3D FLIP LANYARD ENGINE
+   (Front: Profile Photo | Back: Pokemon Card | Realistic Physics & 3D Rotation)
    ========================================================================== */
 
 export class LanyardPhysicsEngine {
@@ -10,20 +11,28 @@ export class LanyardPhysicsEngine {
     this.ctx = this.canvas.getContext('2d');
     this.dpr = window.devicePixelRatio || 1;
 
-    // Load Profile Avatar Image
+    // 1. Load Profile Avatar Image (Front Side)
     this.avatarImg = new Image();
-    this.avatarImg.src = '/profile.png';
+    this.avatarImg.src = '/id-card.jpeg';
     this.avatarLoaded = false;
     this.avatarImg.onload = () => {
       this.avatarLoaded = true;
     };
 
-    // 30% Enlarged Card Dimensions (234x364)
+    // 2. Load Yu-Gi-Oh Card Back Artwork (Back Side)
+    this.yugiohImg = new Image();
+    this.yugiohImg.src = '/yugioh-card.png';
+    this.yugiohLoaded = false;
+    this.yugiohImg.onload = () => {
+      this.yugiohLoaded = true;
+    };
+
+    // Card Dimensions (234x364)
     this.cardWidth = 234;
     this.cardHeight = 364;
     this.cardRadius = 18;
 
-    // Fixed Long Rope Settings (1130px Target Offset)
+    // Rope Physics Settings
     this.numRopeSegments = 28;
     this.ropeLength = 1130;
     this.segmentLength = this.ropeLength / this.numRopeSegments;
@@ -32,11 +41,15 @@ export class LanyardPhysicsEngine {
     this.gravity = 0.45;
     this.damping = 0.93;
 
-    // Motion State
+    // Motion State (Z-axis Swing)
     this.cardPos = { x: 0, y: 0 };
     this.cardVel = { x: 0, y: 0 };
     this.cardAngle = 0;
     this.cardAngularVel = 0;
+
+    // 3D Y-Axis Flip Physics
+    this.flipAngle = 0;      // 0 = Front, PI = Back
+    this.cardSpinVel = 0;   // Y-axis rotational speed
 
     // Drag State
     this.isDragging = false;
@@ -52,12 +65,12 @@ export class LanyardPhysicsEngine {
   }
 
   calculateTargetRopeLength() {
-    const terminal = document.querySelector('.terminal-card');
-    if (terminal) {
-      const rect = terminal.getBoundingClientRect();
-      return Math.max(rect.top + window.scrollY, 400);
+    const card = document.querySelector('.about-bio-card') || document.querySelector('.terminal-card');
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      return Math.max(rect.top + window.scrollY - 45, 300);
     }
-    return 780;
+    return 740;
   }
 
   initCanvasSize() {
@@ -67,9 +80,7 @@ export class LanyardPhysicsEngine {
     this.width = window.innerWidth;
     this.height = Math.max(bottomPos, 2400);
 
-    // Sync CSS style height 1-to-1 to prevent canvas squishing
     this.canvas.style.height = `${this.height}px`;
-
     this.canvas.width = this.width * this.dpr;
     this.canvas.height = this.height * this.dpr;
     this.ctx.scale(this.dpr, this.dpr);
@@ -125,6 +136,14 @@ export class LanyardPhysicsEngine {
       };
     };
 
+    // Click / Touch to Flip 3D Card
+    this.canvas.addEventListener('click', (e) => {
+      const pos = getCanvasPos(e);
+      if (this.hitTestCard(pos.x, pos.y)) {
+        this.cardSpinVel += Math.PI * 0.12; // Smooth 180° flip momentum on click
+      }
+    });
+
     const onStart = (e) => {
       const pos = getCanvasPos(e);
       this.mousePos = pos;
@@ -152,7 +171,6 @@ export class LanyardPhysicsEngine {
 
       const isOverCard = this.hitTestCard(pos.x, pos.y);
 
-      // Dynamic pointer events toggle
       if (isOverCard || this.isDragging) {
         this.canvas.style.pointerEvents = 'auto';
         this.canvas.style.cursor = this.isDragging ? 'grabbing' : 'grab';
@@ -177,6 +195,9 @@ export class LanyardPhysicsEngine {
         this.cardVel.x += this.mouseVel.x * 0.7;
         this.cardVel.y += this.mouseVel.y * 0.7;
         this.cardAngularVel += (this.mouseVel.x * 0.02);
+
+        // Add 3D Y-axis spin momentum from horizontal drag velocity!
+        this.cardSpinVel += this.mouseVel.x * 0.022;
       }
       this.canvas.style.pointerEvents = 'none';
       document.body.classList.remove('dragging-lanyard');
@@ -229,7 +250,7 @@ export class LanyardPhysicsEngine {
     this.nodes[0].x = this.anchor.x;
     this.nodes[0].y = this.anchor.y;
 
-    // 1. Verlet Integration for Long Rope Segments
+    // 1. Verlet Integration for Long Ribbon Rope
     for (let i = 1; i < this.nodes.length; i++) {
       const n = this.nodes[i];
       const vx = (n.x - n.oldX) * this.damping;
@@ -274,7 +295,7 @@ export class LanyardPhysicsEngine {
       lastNode.y = this.cardPos.y;
     }
 
-    // Angular Damping & Pendulum Torque
+    // Pendulum Swing Torque (Z-axis)
     const targetAngle = Math.atan2(
       this.cardPos.x - this.nodes[this.nodes.length - 3].x,
       this.cardPos.y - this.nodes[this.nodes.length - 3].y
@@ -283,6 +304,19 @@ export class LanyardPhysicsEngine {
     this.cardAngularVel += angleDiff * 0.08;
     this.cardAngularVel *= 0.88;
     this.cardAngle += this.cardAngularVel;
+
+    // 3D Y-Axis Spin Physics & Snap-to-face
+    this.flipAngle += this.cardSpinVel;
+    this.cardSpinVel *= 0.93; // Air friction damping
+
+    // Slight spin excitation from lateral pendulum movement
+    this.cardSpinVel += (this.cardVel.x * 0.0012);
+
+    // Auto-rest snapping to nearest front (0) or back (PI) face when idle
+    if (!this.isDragging && Math.abs(this.cardSpinVel) < 0.006) {
+      const nearestFace = Math.round(this.flipAngle / Math.PI) * Math.PI;
+      this.flipAngle += (nearestFace - this.flipAngle) * 0.08;
+    }
 
     // 3. Relax Rope Constraints (5 iterations)
     for (let iteration = 0; iteration < 5; iteration++) {
@@ -309,7 +343,7 @@ export class LanyardPhysicsEngine {
   draw() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // 1. Draw Crimson Ribbon Lanyard Strap (Attaches from 0px Window Top Edge)
+    // 1. Draw Crimson Ribbon Lanyard Strap
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.moveTo(this.nodes[0].x, this.nodes[0].y);
@@ -344,10 +378,10 @@ export class LanyardPhysicsEngine {
     this.ctx.setLineDash([]);
     this.ctx.restore();
 
-    // 2. Draw ID Card Badge (FULL-FRAME PHOTO CARD)
+    // 2. Draw 3D Realistic ID Card Badge (FRONT: Profile | BACK: Pokemon Card)
     this.ctx.save();
     this.ctx.translate(this.cardPos.x, this.cardPos.y);
-    this.ctx.rotate(this.cardAngle);
+    this.ctx.rotate(this.cardAngle); // Swing Z-rotation
 
     // Metal Carabiner Ring
     this.ctx.fillStyle = '#64748b';
@@ -360,59 +394,111 @@ export class LanyardPhysicsEngine {
     this.ctx.arc(0, -6, 4.5, 0, Math.PI * 2);
     this.ctx.fill();
 
+    // 3D Perspective Projection for Y-Axis Flip
+    const cosAngle = Math.cos(this.flipAngle);
+    const isFront = cosAngle >= 0;
+
+    this.ctx.save();
+    // Compress width by cosAngle to simulate 3D rotation in 2D space
+    this.ctx.scale(cosAngle, 1);
+
+    // If showing back side, scale -1 horizontally so text & images are read right-side up
+    if (!isFront) {
+      this.ctx.scale(-1, 1);
+    }
+
     const cw = this.cardWidth;
     const ch = this.cardHeight;
     const cx = -cw / 2;
     const cy = 0;
 
-    // Card Soft Shadow (Box Only)
-    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
-    this.ctx.shadowBlur = 20;
-    this.ctx.shadowOffsetY = 10;
+    // Dynamic 3D Drop Shadow (flattens as card turns edge-on)
+    const shadowIntensity = Math.abs(cosAngle);
+    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    this.ctx.shadowBlur = 18 * shadowIntensity;
+    this.ctx.shadowOffsetY = 10 * shadowIntensity;
 
-    // Base Fill for Shadow
-    this.ctx.fillStyle = '#ffffff';
-    this.drawRoundRect(cx, cy, cw, ch, this.cardRadius, '#ffffff');
+    // Base Round Rect Fill
+    this.ctx.fillStyle = isFront ? '#ffffff' : '#1e1b4b';
+    this.drawRoundRect(cx, cy, cw, ch, this.cardRadius, isFront ? '#ffffff' : '#1e1b4b');
 
-    // RESET SHADOW IMMEDIATELY TO PREVENT DOUBLE GHOSTING
+    // Reset shadow immediately
     this.ctx.shadowColor = 'transparent';
     this.ctx.shadowBlur = 0;
-    this.ctx.shadowOffsetX = 0;
     this.ctx.shadowOffsetY = 0;
 
-    // FULL FRAME PHOTO CLIP & DRAWING
+    // Clip Card Inner Canvas
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.roundRect(cx, cy, cw, ch, this.cardRadius);
     this.ctx.clip();
 
-    if (this.avatarLoaded) {
-      const imgRatio = this.avatarImg.width / this.avatarImg.height;
-      const cardRatio = cw / ch;
-      let renderW, renderH, renderX, renderY;
+    if (isFront) {
+      // ==========================================
+      // FRONT SIDE: User Profile Photo
+      // ==========================================
+      if (this.avatarLoaded) {
+        const imgRatio = this.avatarImg.width / this.avatarImg.height;
+        const cardRatio = cw / ch;
+        let renderW, renderH, renderX, renderY;
 
-      if (imgRatio > cardRatio) {
-        renderH = ch;
-        renderW = ch * imgRatio;
-        renderX = cx - (renderW - cw) / 2;
-        renderY = cy;
+        if (imgRatio > cardRatio) {
+          renderH = ch;
+          renderW = ch * imgRatio;
+          renderX = cx - (renderW - cw) / 2;
+          renderY = cy;
+        } else {
+          renderW = cw;
+          renderH = cw / imgRatio;
+          renderX = cx;
+          renderY = cy - (renderH - ch) / 2;
+        }
+        this.ctx.drawImage(this.avatarImg, renderX, renderY, renderW, renderH);
       } else {
-        renderW = cw;
-        renderH = cw / imgRatio;
-        renderX = cx;
-        renderY = cy - (renderH - ch) / 2;
+        this.ctx.fillStyle = '#e2e8f0';
+        this.ctx.fill();
       }
-      this.ctx.drawImage(this.avatarImg, renderX, renderY, renderW, renderH);
     } else {
-      this.ctx.fillStyle = '#e2e8f0';
-      this.ctx.fill();
+      // ==========================================
+      // BACK SIDE: Official Yu-Gi-Oh Card Back
+      // ==========================================
+      if (this.yugiohLoaded) {
+        this.ctx.drawImage(this.yugiohImg, cx, cy, cw, ch);
+      } else {
+        // High quality fallback gradient design
+        const yGrad = this.ctx.createLinearGradient(cx, cy, cx + cw, cy + ch);
+        yGrad.addColorStop(0, '#451a03');
+        yGrad.addColorStop(0.5, '#78350f');
+        yGrad.addColorStop(1, '#92400e');
+        this.ctx.fillStyle = yGrad;
+        this.ctx.fill();
+
+        this.ctx.fillStyle = '#f59e0b';
+        this.ctx.font = 'bold 18px sans-serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('YU-GI-OH! CARD', 0, ch / 2);
+      }
     }
     this.ctx.restore();
 
-    // Sleek Crimson Acrylic Border Accent
+    // 3D Specular Light Sheen Reflection as card rotates in 3D
+    const sheenAmount = Math.abs(Math.sin(this.flipAngle));
+    if (sheenAmount > 0.05) {
+      const sheenGrad = this.ctx.createLinearGradient(cx, cy, cx + cw, cy + ch);
+      sheenGrad.addColorStop(0, `rgba(255, 255, 255, ${sheenAmount * 0.38})`);
+      sheenGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0)');
+      sheenGrad.addColorStop(1, `rgba(255, 255, 255, ${sheenAmount * 0.15})`);
+
+      this.ctx.fillStyle = sheenGrad;
+      this.ctx.beginPath();
+      this.ctx.roundRect(cx, cy, cw, ch, this.cardRadius);
+      this.ctx.fill();
+    }
+
+    // Border Accent Frame
     this.ctx.beginPath();
     this.ctx.roundRect(cx, cy, cw, ch, this.cardRadius);
-    this.ctx.strokeStyle = 'rgba(220, 38, 38, 0.65)';
+    this.ctx.strokeStyle = isFront ? 'rgba(220, 38, 38, 0.65)' : 'rgba(251, 191, 36, 0.75)';
     this.ctx.lineWidth = 2.5;
     this.ctx.stroke();
 
@@ -425,7 +511,8 @@ export class LanyardPhysicsEngine {
     this.ctx.lineWidth = 1.2;
     this.ctx.stroke();
 
-    this.ctx.restore();
+    this.ctx.restore(); // Restore 3D Scale
+    this.ctx.restore(); // Restore Translation & Z-Rotation
   }
 
   drawRoundRect(x, y, w, h, r, fillColor, strokeColor) {
