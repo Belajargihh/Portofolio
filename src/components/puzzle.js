@@ -5,17 +5,20 @@
 export class SkillsPuzzleEngine {
   constructor(gridId) {
     this.gridContainer = document.getElementById(gridId);
-    if (!this.gridContainer) return;
+    if (!this.gridContainer) {
+      console.error('[Puzzle] Grid container not found:', gridId);
+      return;
+    }
 
-    this.isPaused = false;
     this.isSwapping = false;
     this.timer = null;
+    this.swapCount = 0;
 
+    console.log('[Puzzle] Constructor OK, grid found');
     this.init();
   }
 
   init() {
-    // Remove old puzzle game mode elements if present
     this.gridContainer.classList.remove('skills-puzzle-active');
     this.gridContainer.style.height = '';
     this.gridContainer.style.position = '';
@@ -23,39 +26,40 @@ export class SkillsPuzzleEngine {
     const emptySlot = this.gridContainer.querySelector('.empty-slot-indicator');
     if (emptySlot) emptySlot.remove();
 
-    // Set fast smooth transition for all skill cards
     const cards = this.gridContainer.querySelectorAll('.skill-card');
+    console.log('[Puzzle] Total skill-card elements:', cards.length);
+
     cards.forEach(card => {
       card.style.position = '';
       card.style.transform = '';
       card.style.width = '';
       card.style.height = '';
-      card.style.transition = 'transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s';
     });
 
-    this.bindHoverEvents();
     this.startSwapLoop();
   }
 
-  bindHoverEvents() {
-    this.gridContainer.addEventListener('mouseenter', () => {
-      this.isPaused = true;
-    });
-
-    this.gridContainer.addEventListener('mouseleave', () => {
-      this.isPaused = false;
-    });
-  }
-
   getCards() {
-    return Array.from(this.gridContainer.querySelectorAll('.skill-card:not([style*="display: none"])'));
+    // Simple filter: only include cards whose inline display is NOT 'none'
+    return Array.from(this.gridContainer.querySelectorAll('.skill-card')).filter(card => {
+      return card.style.display !== 'none';
+    });
   }
 
   swapMultiplePairs(pairCount = 2) {
-    if (this.isPaused || this.isSwapping) return;
+    if (this.isSwapping) return;
 
     const cards = this.getCards();
-    if (cards.length < 4) return;
+    if (cards.length < 4) {
+      console.warn('[Puzzle] Not enough visible cards:', cards.length);
+      return;
+    }
+
+    // Log first 3 ticks for debugging
+    this.swapCount++;
+    if (this.swapCount <= 3) {
+      console.log(`[Puzzle] Tick #${this.swapCount}, visible cards: ${cards.length}`);
+    }
 
     const usedIndices = new Set();
     const pairsToSwap = [];
@@ -67,10 +71,8 @@ export class SkillsPuzzleEngine {
 
       if (availableIndices.length < 2) break;
 
-      // Pick a random card A from available ones
       const indexA = availableIndices[Math.floor(Math.random() * availableIndices.length)];
       
-      // Find valid adjacent neighbor B that hasn't been used in this batch
       const possibleNeighbors = [indexA - 1, indexA + 1, indexA - 5, indexA + 5, indexA - 4, indexA + 4].filter(
         i => i >= 0 && i < cards.length && !usedIndices.has(i)
       );
@@ -88,26 +90,46 @@ export class SkillsPuzzleEngine {
 
     this.isSwapping = true;
 
-    // 1. Calculate positions and trigger smooth transform glides simultaneously
+    // 1. Calculate deltas and animate
     pairsToSwap.forEach(({ cardA, cardB }) => {
+      cardA.dataset.swapping = 'true';
+      cardB.dataset.swapping = 'true';
+
       const rectA = cardA.getBoundingClientRect();
       const rectB = cardB.getBoundingClientRect();
 
       const dxA = rectB.left - rectA.left;
       const dyA = rectB.top - rectA.top;
-
       const dxB = rectA.left - rectB.left;
       const dyB = rectA.top - rectB.top;
 
-      cardA.style.zIndex = '10';
-      cardB.style.zIndex = '10';
+      // Force reset before animating
+      cardA.style.transition = 'none';
+      cardB.style.transition = 'none';
+      cardA.style.transform = '';
+      cardB.style.transform = '';
+
+      cardA.style.zIndex = '30';
+      cardB.style.zIndex = '30';
+
+      // Force reflow
+      void cardA.offsetHeight;
+
+      // Now set transition and target transform
+      cardA.style.transition = 'transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      cardB.style.transition = 'transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1)';
+
+      // Force reflow again so browser registers the transition
+      void cardA.offsetHeight;
+
       cardA.style.transform = `translate3d(${dxA}px, ${dyA}px, 0)`;
       cardB.style.transform = `translate3d(${dxB}px, ${dyB}px, 0)`;
     });
 
-    // 2. After 380ms transition, swap DOM order cleanly
+    // 2. After transition ends, swap DOM order
     setTimeout(() => {
       pairsToSwap.forEach(({ cardA, cardB }) => {
+        // Remove animation
         cardA.style.transition = 'none';
         cardB.style.transition = 'none';
         cardA.style.transform = '';
@@ -115,15 +137,21 @@ export class SkillsPuzzleEngine {
         cardA.style.zIndex = '';
         cardB.style.zIndex = '';
 
-        const siblingA = cardA.nextSibling === cardB ? cardA : cardA.nextSibling;
-        this.gridContainer.insertBefore(cardA, cardB);
-        this.gridContainer.insertBefore(cardB, siblingA);
+        // Swap DOM positions using placeholder
+        if (cardA.parentNode && cardB.parentNode && cardA.parentNode === cardB.parentNode) {
+          const placeholder = document.createComment('swap');
+          cardA.parentNode.insertBefore(placeholder, cardA);
+          cardB.parentNode.insertBefore(cardA, cardB);
+          placeholder.parentNode.insertBefore(cardB, placeholder);
+          placeholder.remove();
+        }
+
+        delete cardA.dataset.swapping;
+        delete cardB.dataset.swapping;
       });
 
+      // Restore transition for future animations
       requestAnimationFrame(() => {
-        cards.forEach(c => {
-          c.style.transition = 'transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s';
-        });
         this.isSwapping = false;
       });
     }, 400);
@@ -131,8 +159,8 @@ export class SkillsPuzzleEngine {
 
   startSwapLoop() {
     this.stopSwapLoop();
+    console.log('[Puzzle] Starting swap loop');
     this.timer = setInterval(() => {
-      // Swaps 2 pairs simultaneously every 1.4 seconds!
       this.swapMultiplePairs(2);
     }, 1400);
   }
@@ -144,3 +172,9 @@ export class SkillsPuzzleEngine {
     }
   }
 }
+
+
+
+
+
+

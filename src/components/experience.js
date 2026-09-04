@@ -18,13 +18,12 @@ export function renderExperience(page = 1) {
 
   container.innerHTML = paginatedItems.map(item => `
     <div class="project-card exp-card" data-tilt data-cursor="pointer">
-      <div class="project-img-wrapper">
-        <img src="${item.image}" alt="${item.role}" class="project-img" loading="lazy" />
-        <div class="exp-period-badge"><i data-lucide="calendar"></i> ${item.period}</div>
-      </div>
       <div class="project-body exp-body">
-        <div class="project-tags">
-          ${(item.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+        <div class="exp-top-banner">
+          <div class="exp-period-badge"><i data-lucide="calendar"></i> ${item.period}</div>
+          <div class="project-tags">
+            ${(item.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+          </div>
         </div>
         
         <div class="exp-header-info">

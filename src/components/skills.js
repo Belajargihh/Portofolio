@@ -1,27 +1,98 @@
 /* ==========================================================================
-   SKILLS & TOOLS STACK (DOM TAB FILTERING)
+   SKILLS & TOOLS STACK (DOM TAB FILTERING & 5x3 SHOW MORE/LESS)
    ========================================================================== */
 
 export function initSkillsTabs() {
   const tabs = document.querySelectorAll('.skills-tabs .tab-btn');
-  const cards = document.querySelectorAll('#skills-grid .skill-card');
+  const cards = Array.from(document.querySelectorAll('#skills-grid .skill-card'));
+  const toggleBtn = document.getElementById('skills-toggle-btn');
+  const toggleText = document.getElementById('skills-toggle-text');
+  const toggleIcon = document.getElementById('skills-toggle-icon');
 
   if (!tabs.length || !cards.length) return;
 
+  const DEFAULT_LIMIT = 15; // 5 columns x 3 rows = 15 default cards
+  let currentCategory = 'all';
+  let isExpanded = false;
+
+  function updateSkillsDisplay() {
+    // 1. Get matching cards for current category
+    const matchingCards = cards.filter(card => {
+      const itemCat = card.getAttribute('data-category');
+      return currentCategory === 'all' || itemCat === currentCategory;
+    });
+
+    // 2. Hide non-matching cards
+    cards.forEach(card => {
+      const itemCat = card.getAttribute('data-category');
+      if (currentCategory !== 'all' && itemCat !== currentCategory) {
+        card.style.display = 'none';
+      }
+    });
+
+    // 3. Handle matching cards display based on limit & expanded state
+    matchingCards.forEach((card, index) => {
+      if (!isExpanded && index >= DEFAULT_LIMIT) {
+        card.style.display = 'none';
+      } else {
+        card.style.display = 'flex';
+      }
+    });
+
+    // 4. Update toggle button state
+    if (toggleBtn) {
+      if (matchingCards.length > DEFAULT_LIMIT) {
+        toggleBtn.style.display = 'inline-flex';
+        const remainingCount = matchingCards.length - DEFAULT_LIMIT;
+
+        if (isExpanded) {
+          if (toggleText) toggleText.textContent = 'Show Less';
+          if (toggleIcon) toggleIcon.setAttribute('data-lucide', 'chevron-up');
+        } else {
+          if (toggleText) toggleText.textContent = 'Show More';
+          if (toggleIcon) toggleIcon.setAttribute('data-lucide', 'chevron-down');
+        }
+
+        try {
+          if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons();
+          }
+        } catch (e) {
+          console.warn('Lucide re-render warning:', e);
+        }
+      } else {
+        toggleBtn.style.display = 'none';
+      }
+    }
+  }
+
+  // Bind tab click events
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const selectedCategory = tab.getAttribute('data-tab');
-
-      cards.forEach(card => {
-        const itemCat = card.getAttribute('data-category');
-        if (selectedCategory === 'all' || itemCat === selectedCategory) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      currentCategory = tab.getAttribute('data-tab');
+      isExpanded = false; // Reset expansion state when changing tab
+      updateSkillsDisplay();
     });
   });
+
+  // Bind toggle button click event
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      updateSkillsDisplay();
+
+      if (!isExpanded) {
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+          skillsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // Initial render
+  updateSkillsDisplay();
 }
+

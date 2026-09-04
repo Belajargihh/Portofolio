@@ -14,7 +14,7 @@ import { renderExperience } from './components/experience.js';
 import { renderJournals } from './components/journals.js';
 import { initContactForm, initClock } from './components/contact.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   // 1. Global Lucide Icon Initialization
   try {
     window.lucide = lucide;
@@ -25,12 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('Lucide init warning:', e);
   }
 
-  // 2. Initialize Skills Tab Filter & 2D Sliding Puzzle Engine
+  // 2. Initialize Skills Tab Filter
   try {
     initSkillsTabs();
-    new SkillsPuzzleEngine('skills-grid');
   } catch (e) {
-    console.error('Skills init error:', e);
+    console.error('Skills tabs init error:', e);
+  }
+
+  // 2b. Initialize Puzzle Engine (separate try-catch + delay to ensure DOM is settled)
+  try {
+    setTimeout(() => {
+      try {
+        const puzzleEngine = new SkillsPuzzleEngine('skills-grid');
+        console.log('[Puzzle] Engine started, visible cards:', puzzleEngine.gridContainer ? puzzleEngine.getCards().length : 0);
+      } catch (pe) {
+        console.error('Puzzle engine init error:', pe);
+      }
+    }, 500);
+  } catch (e) {
+    console.error('Puzzle setup error:', e);
   }
 
   // 3. Initialize Interactive Lanyard Physics Engine
@@ -97,11 +110,27 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Utilities init error:', e);
   }
 
-  // 11. Navbar Scroll & Active Link Observer
+  // 11. Navbar Scroll & Active Link Observer + Mobile Toggle
   try {
     const navbar = document.getElementById('navbar');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (mobileToggle && navMenu) {
+      mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileToggle.classList.toggle('active');
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileToggle.classList.remove('active');
+        });
+      });
+    }
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) {
@@ -214,4 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (e) {
     console.error(e);
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

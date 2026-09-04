@@ -9,6 +9,8 @@ export function init3DTiltEffect() {
     el.style.transformStyle = 'preserve-3d';
 
     el.addEventListener('mousemove', (e) => {
+      if (el.dataset.swapping === 'true') return;
+
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -23,11 +25,15 @@ export function init3DTiltEffect() {
     });
 
     el.addEventListener('mouseleave', () => {
+      if (el.dataset.swapping === 'true') return;
+
       el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       el.style.transition = 'transform 0.5s ease';
     });
 
     el.addEventListener('mouseenter', () => {
+      if (el.dataset.swapping === 'true') return;
+
       el.style.transition = 'none';
     });
   });

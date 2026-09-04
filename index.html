@@ -55,6 +55,28 @@
   <canvas id="lanyard-canvas"></canvas>
 
   <main>
+    <!-- INTRO SECTION (Permanent Cinematic Section Before Home) -->
+    <section id="intro" class="intro-section">
+      <!-- Scrolling Marquee Background Text -->
+      <div class="intro-marquee-track" aria-hidden="true">
+        <div class="intro-marquee-inner">
+          <span>BILLY JES S.Kom</span>
+          <span>BILLY JES S.Kom</span>
+          <span>BILLY JES S.Kom</span>
+          <span>BILLY JES S.Kom</span>
+          <span>BILLY JES S.Kom</span>
+          <span>BILLY JES S.Kom</span>
+        </div>
+      </div>
+
+      <!-- Main Intro Cutout Content: Full-page portrait cutout standing in front of text -->
+      <div class="intro-content">
+        <div class="intro-cutout-wrapper">
+          <img src="/swafoto-rbg.png" alt="Billy Jes S.Kom" class="intro-cutout-photo" />
+        </div>
+      </div>
+    </section>
+
     <!-- HERO SECTION -->
     <section id="hero" class="hero-section">
       <div class="hero-container">
@@ -300,6 +322,13 @@
             </div>
             <div class="skill-info"><h4>LangChain</h4></div>
           </div>
+        </div>
+
+        <div class="skills-toggle-container">
+          <button id="skills-toggle-btn" class="skills-toggle-btn" data-cursor="pointer">
+            <span id="skills-toggle-text">Show More</span>
+            <i id="skills-toggle-icon" data-lucide="chevron-down"></i>
+          </button>
         </div>
       </div>
     </section>

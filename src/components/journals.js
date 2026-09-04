@@ -23,14 +23,15 @@ export function renderJournals(page = 1) {
     const doiUrl = (journal.doi || '').startsWith('http') ? journal.doi : `https://doi.org/${journal.doi}`;
     return `
       <div class="project-card journal-card" data-tilt data-cursor="pointer">
-        <div class="project-img-wrapper">
-          <img src="${journal.image}" alt="${journal.title}" class="project-img" loading="lazy" />
-          ${journal.accreditation ? `<div class="journal-sinta-badge"><i data-lucide="shield-check"></i> ${journal.accreditation}</div>` : ''}
-          <div class="journal-year-badge"><i data-lucide="book-open"></i> ${journal.year}</div>
-        </div>
         <div class="project-body">
-          <div class="project-tags">
-            ${(journal.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+          <div class="journal-top-banner">
+            <div class="journal-badges-group">
+              ${journal.accreditation ? `<div class="journal-sinta-badge"><i data-lucide="shield-check"></i> ${journal.accreditation}</div>` : ''}
+              <div class="journal-year-badge"><i data-lucide="book-open"></i> ${journal.year}</div>
+            </div>
+            <div class="project-tags">
+              ${(journal.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
           </div>
           <div class="journal-publisher"><i data-lucide="award"></i> ${journal.publisher}</div>
           <h3 class="project-title">${journal.title}</h3>
