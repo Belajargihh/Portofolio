@@ -8,7 +8,7 @@ export function initContactForm() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
@@ -21,25 +21,44 @@ export function initContactForm() {
     submitBtn.innerHTML = `<span>Mengirim...</span> <i data-lucide="loader-2" class="spin"></i>`;
     if (window.lucide) window.lucide.createIcons();
 
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Pesan Terkirim!</span> <i data-lucide="check"></i>`;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '46da7871-a59c-4499-b34e-9b481efc6152',
+          name,
+          email,
+          subject,
+          message,
+          from_name: 'Portfolio Contact Form',
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        submitBtn.innerHTML = `<span>Pesan Terkirim!</span> <i data-lucide="check"></i>`;
+        responseDiv.className = 'form-response success';
+        responseDiv.textContent = `Terima kasih ${name}! Pesan Anda telah berhasil terkirim. Saya akan segera menghubungi Anda melalui ${email}.`;
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Gagal mengirim pesan');
+      }
+    } catch (err) {
+      submitBtn.innerHTML = `<span>Gagal Mengirim</span> <i data-lucide="alert-circle"></i>`;
+      responseDiv.className = 'form-response';
+      responseDiv.style.color = '#ef4444';
+      responseDiv.textContent = `Maaf, terjadi kesalahan: ${err.message}. Silakan coba lagi atau hubungi langsung via email.`;
+    } finally {
       if (window.lucide) window.lucide.createIcons();
-
-      responseDiv.className = 'form-response success';
-      responseDiv.textContent = `Terima kasih ${name}! Pesan Anda telah berhasil terkirim. Saya akan segera menghubungi Anda melalui ${email}.`;
-
-      // Open default mail client fallback
-      const mailtoUrl = `mailto:billysorong112@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`)}`;
-      window.open(mailtoUrl, '_blank');
-
-      form.reset();
+      submitBtn.disabled = false;
 
       setTimeout(() => {
         submitBtn.innerHTML = `<span>Kirim Pesan</span> <i data-lucide="send"></i>`;
         if (window.lucide) window.lucide.createIcons();
       }, 4000);
-    }, 1200);
+    }
   });
 }
 
