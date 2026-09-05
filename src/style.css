@@ -1906,35 +1906,50 @@ h1, h2, h3, h4, h5, h6 {
   /* ===== INTRO SECTION ON MOBILE ===== */
   .intro-section {
     display: flex !important;
-    min-height: 80vh;
-    min-height: 80dvh;
-    padding-top: 80px;
+    min-height: calc(100vh - 70px);
+    min-height: calc(100dvh - 70px);
+    padding-top: 70px;
+    align-items: center;
+    justify-content: center;
   }
 
   .intro-marquee-track {
-    top: 50%;
-    opacity: 0.4;
+    top: 45%;
+    opacity: 0.35;
   }
 
   .intro-marquee-inner span {
-    font-size: clamp(3rem, 12vw, 5.5rem);
-    -webkit-text-stroke: 1.5px rgba(239, 68, 68, 0.85);
+    font-size: clamp(2.4rem, 9.5vw, 4.2rem);
+    -webkit-text-stroke: 1.2px rgba(239, 68, 68, 0.85);
     letter-spacing: 2px;
   }
 
   .intro-cutout-wrapper {
-    height: clamp(380px, 62vh, 520px);
+    height: auto;
+    max-height: 65vh;
+    max-height: 65dvh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
   }
 
   .intro-cutout-photo {
-    height: 135%;
-    transform: translateY(0);
+    height: auto;
+    max-height: 60vh;
+    max-height: 60dvh;
+    width: auto;
+    max-width: 88%;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 40px rgba(239, 68, 68, 0.35));
   }
 
   .intro-content::before {
-    width: 350px;
-    height: 350px;
+    width: 280px;
+    height: 280px;
   }
 
   /* ===== 2. GLOBAL SECTION SPACING ===== */
