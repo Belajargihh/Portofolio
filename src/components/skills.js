@@ -11,7 +11,7 @@ export function initSkillsTabs() {
 
   if (!tabs.length || !cards.length) return;
 
-  const DEFAULT_LIMIT = 15; // 5 columns x 3 rows = 15 default cards
+  function getDefaultLimit() { return window.innerWidth < 768 ? 8 : 15; }
   let currentCategory = 'all';
   let isExpanded = false;
 
@@ -32,7 +32,7 @@ export function initSkillsTabs() {
 
     // 3. Handle matching cards display based on limit & expanded state
     matchingCards.forEach((card, index) => {
-      if (!isExpanded && index >= DEFAULT_LIMIT) {
+      if (!isExpanded && index >= getDefaultLimit()) {
         card.style.display = 'none';
       } else {
         card.style.display = 'flex';
@@ -41,9 +41,9 @@ export function initSkillsTabs() {
 
     // 4. Update toggle button state
     if (toggleBtn) {
-      if (matchingCards.length > DEFAULT_LIMIT) {
+      if (matchingCards.length > getDefaultLimit()) {
         toggleBtn.style.display = 'inline-flex';
-        const remainingCount = matchingCards.length - DEFAULT_LIMIT;
+        const remainingCount = matchingCards.length - getDefaultLimit();
 
         if (isExpanded) {
           if (toggleText) toggleText.textContent = 'Show Less';
