@@ -1894,42 +1894,107 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  /* 1. Hide Intro section on mobile completely so users start directly on Home (#hero) */
+  /* ===== 1. HIDE INTRO, LANYARD & ID CARD ON MOBILE ===== */
   .intro-section {
     display: none !important;
   }
 
-  /* 2. Hero Section Adjustments */
+  #lanyard-canvas {
+    display: none !important;
+  }
+
+  .about-lanyard-zone {
+    display: none !important;
+  }
+
+  /* ===== 2. GLOBAL SECTION SPACING ===== */
+  .section-container {
+    padding: 50px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    padding: 5px 12px;
+    gap: 6px;
+  }
+
+  .section-tag svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ===== 3. HERO SECTION ===== */
   .hero-section {
     min-height: calc(100vh - 70px);
-    padding-top: 110px;
+    min-height: calc(100dvh - 70px);
+    padding-top: 100px;
     padding-bottom: 40px;
   }
 
+  .hero-container {
+    padding: 0 16px;
+  }
+
+  .hero-content-full {
+    max-width: 100%;
+  }
+
   .hero-title {
-    font-size: clamp(2rem, 8vw, 2.75rem);
+    font-size: clamp(1.7rem, 7.5vw, 2.5rem);
     line-height: 1.25;
+    margin-bottom: 14px;
   }
 
   .hero-description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+    padding: 0 4px;
   }
 
   .hero-social-bar {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .social-icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-icon-btn img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .social-icon-btn::after {
+    display: none;
   }
 
   .social-icon-btn.cv-pill {
     width: 100%;
+    height: 44px;
     justify-content: center;
-    margin-top: 6px;
+    margin-top: 4px;
+    font-size: 13px;
   }
 
-  /* 3. Mobile Navigation Drawer */
+  .scroll-down {
+    display: none;
+  }
+
+  /* ===== 4. MOBILE NAVIGATION DRAWER ===== */
   .nav-links {
     display: flex !important;
     flex-direction: column;
@@ -1942,8 +2007,8 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(9, 13, 22, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 24px 20px;
-    gap: 12px;
+    padding: 20px 16px;
+    gap: 8px;
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
     transform: translateY(-130%);
@@ -1964,7 +2029,11 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--radius-md);
     width: 100%;
     text-align: left;
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .nav-actions .btn-primary {
+    display: none;
   }
 
   .mobile-toggle {
@@ -1983,12 +2052,69 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--accent-red);
   }
 
-  /* 4. Skills & Tools Mobile Enhancements */
+  /* ===== 5. ABOUT SECTION ===== */
+  .about-section {
+    padding-top: 20px;
+  }
+
+  .about-clean-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .about-bio-card {
+    padding: 22px 18px;
+    gap: 16px;
+  }
+
+  .about-bio-title {
+    font-size: 1.35rem;
+  }
+
+  .about-bio-text {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .about-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 14px;
+  }
+
+  .about-highlight-item {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .about-highlight-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+  }
+
+  .about-highlight-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .about-highlight-item h4 {
+    font-size: 0.85rem;
+  }
+
+  .about-highlight-item p {
+    font-size: 0.72rem;
+  }
+
+  /* ===== 6. SKILLS SECTION ===== */
   .skills-tabs {
     overflow-x: auto;
     flex-wrap: nowrap;
     justify-content: flex-start;
     padding-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 24px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -2000,49 +2126,235 @@ h1, h2, h3, h4, h5, h6 {
   .tab-btn {
     white-space: nowrap;
     flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 7px 14px;
+    font-size: 12px;
   }
 
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .skill-card {
-    padding: 14px 10px;
+    padding: 12px 10px;
+    gap: 10px;
+  }
+
+  .skill-icon {
+    width: 38px;
+    height: 38px;
+    padding: 6px;
+    border-radius: 10px;
   }
 
   .skill-icon img {
-    width: 32px;
-    height: 32px;
+    width: 100%;
+    height: 100%;
   }
 
   .skill-info h4 {
-    font-size: 13px;
+    font-size: 0.8rem;
   }
 
-  /* 5. Projects & Grids Responsive Layout */
+  /* ===== 7. PROJECTS, EXPERIENCE & JOURNALS GRID ===== */
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  #experience-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .projects-section .section-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 16px;
   }
 
   .project-filters {
     flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .project-card {
+    border-radius: var(--radius-md);
+  }
+
+  .project-img-wrapper {
+    height: 170px;
+  }
+
+  .project-body {
+    padding: 18px 16px;
+  }
+
+  .project-tags {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .project-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .project-desc {
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .project-footer {
+    padding-top: 12px;
     gap: 8px;
   }
 
-  /* 6. Contact Section Responsive Layout */
+  .project-link {
+    font-size: 12px;
+  }
+
+  /* Experience Cards */
+  .exp-body {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .exp-top-banner {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .exp-period-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .exp-company-title {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .exp-company-title svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .exp-role-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+
+  .exp-bullet-list {
+    gap: 10px;
+  }
+
+  .exp-bullet-item {
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+
+  .exp-bullet-item svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Journal Cards */
+  .journal-badges-group {
+    gap: 6px;
+  }
+
+  .journal-sinta-badge,
+  .journal-year-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .journal-publisher {
+    font-size: 12px;
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+
+  .journal-doi {
+    font-size: 11px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
+  .doi-link {
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ===== 8. PAGINATION ===== */
+  .pagination-wrapper {
+    gap: 6px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-btn, .page-number {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  .page-number {
+    min-width: 34px;
+  }
+
+  /* ===== 9. CONTACT SECTION ===== */
   .contact-card-glass {
-    padding: 24px 18px;
-    gap: 30px;
+    padding: 22px 16px;
+    gap: 24px;
+    grid-template-columns: 1fr;
+    border-radius: var(--radius-md);
+  }
+
+  .contact-subtext {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-methods {
+    gap: 12px;
+  }
+
+  .method-item {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+
+  .method-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .method-label {
+    font-size: 11px;
+  }
+
+  .method-val {
+    font-size: 13px;
+    word-break: break-all;
+  }
+
+  .form-group label {
+    font-size: 12px;
   }
 
   .form-group input, .form-group textarea {
@@ -2050,19 +2362,116 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px;
   }
 
-  /* 7. Hide Custom Pointer Cursor on Touch Devices */
+  .btn-block {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  /* ===== 10. MODAL ===== */
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-content {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+    max-height: 92vh;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ===== 11. FOOTER ===== */
+  .site-footer {
+    padding: 28px 0;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .footer-left {
+    order: 1;
+  }
+
+  .footer-left p {
+    font-size: 12px;
+  }
+
+  #back-to-top {
+    order: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ===== 12. HIDE CUSTOM CURSOR ON TOUCH DEVICES ===== */
   .custom-cursor, .cursor-dot {
     display: none !important;
   }
 }
 
+/* ===== EXTRA SMALL SCREENS (≤ 480px) ===== */
 @media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
   }
 
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.45rem;
+  }
+
+  .about-bio-title {
+    font-size: 1.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .skill-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  .skill-icon {
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+
+  .skill-info h4 {
+    font-size: 0.72rem;
+  }
+
+  .hero-social-bar {
+    gap: 8px;
+  }
+
+  .social-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon-btn img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .project-img-wrapper {
+    height: 150px;
+  }
+
+  .method-val {
+    font-size: 12px;
   }
 }
 

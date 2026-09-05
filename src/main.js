@@ -46,9 +46,11 @@ function initApp() {
     console.error('Puzzle setup error:', e);
   }
 
-  // 3. Initialize Interactive Lanyard Physics Engine
+  // 3. Initialize Interactive Lanyard Physics Engine (Desktop Only)
   try {
-    new LanyardPhysicsEngine('lanyard-canvas');
+    if (window.innerWidth >= 768) {
+      new LanyardPhysicsEngine('lanyard-canvas');
+    }
   } catch (e) {
     console.error('Lanyard engine error:', e);
   }

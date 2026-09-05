@@ -5,7 +5,7 @@
 import { projectsData, getProjectImage } from '../data/projects.js';
 
 let currentProjectsPage = 1;
-const ITEMS_PER_PAGE = 3;
+function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 let currentCategoryFilter = 'all';
 
 export function renderProjects(filter = 'all', page = 1) {
@@ -20,11 +20,11 @@ export function renderProjects(filter = 'all', page = 1) {
     ? projectsData 
     : projectsData.filter(p => p.category === filter);
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
+  const totalPages = Math.ceil(filtered.length / getItemsPerPage()) || 1;
   if (currentProjectsPage > totalPages) currentProjectsPage = totalPages;
 
-  const startIndex = (currentProjectsPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const startIndex = (currentProjectsPage - 1) * getItemsPerPage();
+  const paginatedItems = filtered.slice(startIndex, startIndex + getItemsPerPage());
 
   container.innerHTML = paginatedItems.map(proj => {
     const imageUrl = getProjectImage(proj);

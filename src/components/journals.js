@@ -5,7 +5,7 @@
 import { journalsData } from '../data/journals.js';
 
 let currentJournalPage = 1;
-const ITEMS_PER_PAGE = 3;
+function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 
 export function renderJournals(page = 1) {
   currentJournalPage = page;
@@ -13,11 +13,11 @@ export function renderJournals(page = 1) {
   const paginationContainer = document.getElementById('journals-pagination');
   if (!container) return;
 
-  const totalPages = Math.ceil(journalsData.length / ITEMS_PER_PAGE) || 1;
+  const totalPages = Math.ceil(journalsData.length / getItemsPerPage()) || 1;
   if (currentJournalPage > totalPages) currentJournalPage = totalPages;
 
-  const startIndex = (currentJournalPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = journalsData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const startIndex = (currentJournalPage - 1) * getItemsPerPage();
+  const paginatedItems = journalsData.slice(startIndex, startIndex + getItemsPerPage());
 
   container.innerHTML = paginatedItems.map(journal => {
     const doiUrl = (journal.doi || '').startsWith('http') ? journal.doi : `https://doi.org/${journal.doi}`;

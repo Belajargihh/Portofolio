@@ -2,7 +2,7 @@ import * as lucide from 'lucide';
 import { experienceData } from '../data/experience.js';
 
 let currentExpPage = 1;
-const ITEMS_PER_PAGE = 3;
+function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 
 export function renderExperience(page = 1) {
   currentExpPage = page;
@@ -10,11 +10,11 @@ export function renderExperience(page = 1) {
   const paginationContainer = document.getElementById('experience-pagination');
   if (!container) return;
 
-  const totalPages = Math.ceil(experienceData.length / ITEMS_PER_PAGE) || 1;
+  const totalPages = Math.ceil(experienceData.length / getItemsPerPage()) || 1;
   if (currentExpPage > totalPages) currentExpPage = totalPages;
 
-  const startIndex = (currentExpPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = experienceData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const startIndex = (currentExpPage - 1) * getItemsPerPage();
+  const paginatedItems = experienceData.slice(startIndex, startIndex + getItemsPerPage());
 
   container.innerHTML = paginatedItems.map(item => `
     <div class="project-card exp-card" data-tilt data-cursor="pointer">
