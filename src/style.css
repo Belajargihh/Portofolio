@@ -1894,17 +1894,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  /* ===== 1. HIDE INTRO, LANYARD & ID CARD ON MOBILE ===== */
-  .intro-section {
-    display: none !important;
-  }
-
+  /* ===== 1. KEEP LANYARD ID CARD HIDDEN ON MOBILE (AS REQUESTED) ===== */
   #lanyard-canvas {
     display: none !important;
   }
 
   .about-lanyard-zone {
     display: none !important;
+  }
+
+  /* ===== INTRO SECTION ON MOBILE ===== */
+  .intro-section {
+    display: flex !important;
+    min-height: 80vh;
+    min-height: 80dvh;
+    padding-top: 80px;
+  }
+
+  .intro-marquee-track {
+    top: 50%;
+    opacity: 0.4;
+  }
+
+  .intro-marquee-inner span {
+    font-size: clamp(3rem, 12vw, 5.5rem);
+    -webkit-text-stroke: 1.5px rgba(239, 68, 68, 0.85);
+    letter-spacing: 2px;
+  }
+
+  .intro-cutout-wrapper {
+    height: clamp(380px, 62vh, 520px);
+    width: 100%;
+  }
+
+  .intro-cutout-photo {
+    height: 135%;
+    transform: translateY(0);
+  }
+
+  .intro-content::before {
+    width: 350px;
+    height: 350px;
   }
 
   /* ===== 2. GLOBAL SECTION SPACING ===== */
