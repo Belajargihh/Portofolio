@@ -80,12 +80,17 @@ export const projectsData = [
     id: 7,
     title: 'MyWatchlist Tracker App',
     category: 'webapp',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['JavaScript', 'Tailwind CSS', 'TMDB API', 'AniList API', 'Vercel'],
     image: '',
-    desc: 'Aplikasi web pengelola dan pemantau daftar tontonan film & serial favorit pengguna.',
-    liveUrl: '',
+    desc: 'Aplikasi web pelacak film, serial TV, dan anime terpadu dengan integrasi TMDB & AniList API, manajemen personal watchlist, dan antarmuka modern responsif.',
+    liveUrl: 'https://my-watchlist-brown.vercel.app/landing.html',
     githubUrl: 'https://github.com/Belajargihh/MyWatchlist',
-    highlights: ['Manajemen Watchlist Interaktif', 'Pencarian & Fitur Filter', 'Desain UI Clean']
+    highlights: [
+      'Integrasi Multi-API: TMDB API (Film & Serial TV) dan AniList API (Anime)',
+      'Manajemen Personal Watchlist & Tracking Status Tontonan Interaktif',
+      'Desain Antarmuka Modern & Responsif berbasis Tailwind CSS',
+      'Live Serverless Web Deployment di Platform Vercel'
+    ]
   },
   {
     id: 8,
