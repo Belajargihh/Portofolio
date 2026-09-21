@@ -2,6 +2,7 @@
    ACADEMIC JOURNALS & RESEARCH ARTICLES (3x2 GRID WITH PAGINATION & SAFE ICONS)
    ========================================================================== */
 
+import * as lucide from 'lucide';
 import { journalsData } from '../data/journals.js';
 
 let currentJournalPage = 1;
@@ -61,8 +62,8 @@ export function renderJournals(page = 1) {
   });
 
   try {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
+    if (lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons({ icons: lucide });
     }
   } catch (e) {
     console.warn(e);

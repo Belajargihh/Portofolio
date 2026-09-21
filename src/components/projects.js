@@ -2,6 +2,7 @@
    PROJECTS GALLERY WITH 3x2 GRID & PAGINATION ENGINE (Safe Icons)
    ========================================================================== */
 
+import * as lucide from 'lucide';
 import { projectsData, getProjectImage } from '../data/projects.js';
 
 let currentProjectsPage = 1;
@@ -77,8 +78,8 @@ export function renderProjects(filter = 'all', page = 1) {
   });
 
   try {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
+    if (lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons({ icons: lucide });
     }
   } catch (e) {
     console.warn('Lucide icon warning:', e);
@@ -182,8 +183,8 @@ export function openProjectModal(id) {
 
   modal.classList.add('open');
   try {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
+    if (lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons({ icons: lucide });
     }
   } catch (e) {
     console.warn(e);
