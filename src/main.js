@@ -12,6 +12,7 @@ import { renderProjects, initProjectFilters, initModalEvents } from './component
 import { renderExperience } from './components/experience.js';
 import { renderJournals } from './components/journals.js';
 import { initContactForm, initClock } from './components/contact.js';
+import { UpsideDownAtmosphere } from './components/strangerThings.js';
 
 function initApp() {
   // 1. Global Lucide Icon Initialization
@@ -102,6 +103,13 @@ function initApp() {
     initClock();
   } catch (e) {
     console.error('Utilities init error:', e);
+  }
+
+  // 10. Initialize Stranger Things The Upside Down Atmosphere
+  try {
+    new UpsideDownAtmosphere('upside-down-canvas');
+  } catch (e) {
+    console.error('Stranger Things atmosphere init error:', e);
   }
 
   // 11. Navbar Scroll & Active Link Observer + Mobile Toggle
