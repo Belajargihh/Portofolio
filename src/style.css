@@ -396,6 +396,28 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 12px;
+  transition: opacity var(--transition-fast);
+}
+
+.nav-brand:hover {
+  opacity: 0.95;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  object-fit: cover;
+  border: 1.5px solid rgba(220, 38, 38, 0.4);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.nav-brand:hover .brand-logo {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+  transform: scale(1.05);
 }
 
 .nav-links {
