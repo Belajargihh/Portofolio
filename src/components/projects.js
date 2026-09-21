@@ -27,6 +27,23 @@ export function renderProjects(filter = 'all', page = 1) {
   const startIndex = (currentProjectsPage - 1) * getItemsPerPage();
   const paginatedItems = filtered.slice(startIndex, startIndex + getItemsPerPage());
 
+  if (paginatedItems.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; color: var(--text-muted);">
+        <i data-lucide="folder-x" style="width: 48px; height: 48px; margin: 0 auto 16px; display: block; opacity: 0.5;"></i>
+        <p style="font-size: 1.1rem; margin-bottom: 8px;">Belum ada proyek dengan demo live di kategori ini.</p>
+        <p style="font-size: 0.9rem; opacity: 0.7;">Demo akan segera ditampilkan setelah proses deployment selesai.</p>
+      </div>
+    `;
+    if (paginationContainer) paginationContainer.innerHTML = '';
+    try {
+      if (lucide && typeof lucide.createIcons === 'function') {
+        lucide.createIcons({ icons: lucide });
+      }
+    } catch (e) {}
+    return;
+  }
+
   container.innerHTML = paginatedItems.map(proj => {
     const imageUrl = getProjectImage(proj);
     return `
@@ -133,6 +150,22 @@ function renderPaginationControls(container, totalPages, currentPage, onPageChan
 
 export function initProjectFilters() {
   const filterBtns = document.querySelectorAll('.project-filters .filter-btn');
+
+  // Sembunyikan tab kategori yang belum memiliki proyek dengan link demo
+  filterBtns.forEach(btn => {
+    const filter = btn.getAttribute('data-filter');
+    if (filter !== 'all') {
+      const hasProjects = projectsData.some(p => 
+        Array.isArray(p.category) ? p.category.includes(filter) : p.category === filter
+      );
+      if (!hasProjects) {
+        btn.style.display = 'none';
+      } else {
+        btn.style.display = '';
+      }
+    }
+  });
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
