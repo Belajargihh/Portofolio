@@ -62,14 +62,19 @@ export const projectsData = [
   },
   {
     id: 6,
-    title: 'AirCheck Air Quality Monitor',
-    category: 'webapp',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    title: 'AirCheck - AI Air Quality Expert System',
+    category: ['webapp', 'ai'],
+    tags: ['Python', 'Flask', 'Naive Bayes', 'NLP', 'Tailwind CSS', 'Vercel'],
     image: '',
-    desc: 'Aplikasi web pemantauan kualitas udara interaktif untuk menampilkan indikator kebersihan dan parameter kualitas udara.',
-    liveUrl: '',
+    desc: 'Aplikasi web sistem pakar berbasis AI & NLP (Naive Bayes) untuk menganalisis dan memprediksi kualitas udara secara real-time berdasarkan deskripsi lingkungan dan input suara.',
+    liveUrl: 'https://air-check-rouge.vercel.app/',
     githubUrl: 'https://github.com/Belajargihh/AirCheck',
-    highlights: ['Indikator Kualitas Udara', 'Antarmuka Visual Interaktif', 'Tampilan Web Responsif']
+    highlights: [
+      'Prediksi Kualitas Udara (Baik/Sedang/Tidak Sehat) berbasis Algoritma Naive Bayes',
+      'Natural Language Processing (NLP) & Stemming Bahasa Indonesia (Sastrawi)',
+      'Dukungan Input Suara (Speech-to-Text) & Rekomendasi Kesehatan Interaktif',
+      'Live Full-Stack Serverless Deployment di Platform Vercel'
+    ]
   },
   {
     id: 7,

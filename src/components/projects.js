@@ -18,7 +18,7 @@ export function renderProjects(filter = 'all', page = 1) {
 
   const filtered = filter === 'all' 
     ? projectsData 
-    : projectsData.filter(p => p.category === filter);
+    : projectsData.filter(p => Array.isArray(p.category) ? p.category.includes(filter) : p.category === filter);
 
   const totalPages = Math.ceil(filtered.length / getItemsPerPage()) || 1;
   if (currentProjectsPage > totalPages) currentProjectsPage = totalPages;
@@ -37,6 +37,11 @@ export function renderProjects(filter = 'all', page = 1) {
               <span>Detail Proyek</span>
               <i data-lucide="eye"></i>
             </button>
+            ${proj.liveUrl ? `
+            <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" onclick="event.stopPropagation();">
+              <span>Live Demo</span>
+              <i data-lucide="external-link"></i>
+            </a>` : ''}
           </div>
         </div>
         <div class="project-body">
@@ -46,11 +51,16 @@ export function renderProjects(filter = 'all', page = 1) {
           <h3 class="project-title">${proj.title}</h3>
           <p class="project-desc">${proj.desc}</p>
           <div class="project-footer">
-            <a href="${proj.liveUrl || '#'}" target="_blank" rel="noopener" class="project-link">
+            ${proj.liveUrl ? `
+            <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link" style="color:var(--accent-cyan);">
               <span>Live Demo</span>
               <i data-lucide="external-link"></i>
-            </a>
-            <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener" class="project-link">
+            </a>` : `
+            <a href="${proj.liveUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link" style="opacity:0.45;">
+              <span>Live Demo</span>
+              <i data-lucide="external-link"></i>
+            </a>`}
+            <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link">
               <i data-lucide="git-branch"></i>
               <span>Source Code</span>
             </a>
@@ -158,11 +168,12 @@ export function openProjectModal(id) {
     </div>
 
     <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <a href="${proj.liveUrl || '#'}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+      ${proj.liveUrl ? `
+      <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
         <span>Buka Live Demo</span>
         <i data-lucide="external-link"></i>
-      </a>
-      <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+      </a>` : ''}
+      <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
         <i data-lucide="git-branch"></i>
         <span>Lihat Source Code</span>
       </a>
