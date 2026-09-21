@@ -29,7 +29,7 @@ export function renderProjects(filter = 'all', page = 1) {
   container.innerHTML = paginatedItems.map(proj => {
     const imageUrl = getProjectImage(proj);
     return `
-      <div class="project-card" data-tilt data-cursor="pointer">
+      <div class="project-card" data-cursor="pointer">
         <div class="project-img-wrapper">
           <img src="${imageUrl}" alt="${proj.title}" class="project-img" loading="lazy" />
           <div class="project-overlay">

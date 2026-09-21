@@ -6,7 +6,6 @@ import * as lucide from 'lucide';
 import { LanyardPhysicsEngine } from './components/lanyard.js';
 import { CustomCursorEngine } from './components/cursor.js';
 import { TypewriterEngine } from './components/typing.js';
-import { init3DTiltEffect } from './components/tilt.js';
 import { initSkillsTabs } from './components/skills.js';
 import { SkillsPuzzleEngine } from './components/puzzle.js';
 import { renderProjects, initProjectFilters, initModalEvents } from './components/projects.js';
@@ -97,14 +96,7 @@ function initApp() {
     console.error('Journals init error:', e);
   }
 
-  // 9. Initialize 3D Tilt Effect
-  try {
-    init3DTiltEffect();
-  } catch (e) {
-    console.error('Tilt init error:', e);
-  }
-
-  // 10. Initialize Form & Clock Utilities
+  // 9. Initialize Form & Clock Utilities
   try {
     initContactForm();
     initClock();

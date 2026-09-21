@@ -17,7 +17,7 @@ export function renderExperience(page = 1) {
   const paginatedItems = experienceData.slice(startIndex, startIndex + getItemsPerPage());
 
   container.innerHTML = paginatedItems.map(item => `
-    <div class="project-card exp-card" data-tilt data-cursor="pointer">
+    <div class="project-card exp-card" data-cursor="pointer">
       <div class="project-body exp-body">
         <div class="exp-top-banner">
           <div class="exp-period-badge"><i data-lucide="calendar"></i> ${item.period}</div>

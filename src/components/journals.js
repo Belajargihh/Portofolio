@@ -22,7 +22,7 @@ export function renderJournals(page = 1) {
   container.innerHTML = paginatedItems.map(journal => {
     const doiUrl = (journal.doi || '').startsWith('http') ? journal.doi : `https://doi.org/${journal.doi}`;
     return `
-      <div class="project-card journal-card" data-tilt data-cursor="pointer">
+      <div class="project-card journal-card" data-cursor="pointer">
         <div class="project-body">
           <div class="journal-top-banner">
             <div class="journal-badges-group">
