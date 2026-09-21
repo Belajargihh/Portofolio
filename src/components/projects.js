@@ -6,7 +6,7 @@ import * as lucide from 'lucide';
 import { projectsData, getProjectImage } from '../data/projects.js';
 
 let currentProjectsPage = 1;
-function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
+function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 6; }
 let currentCategoryFilter = 'all';
 
 export function renderProjects(filter = 'all', page = 1) {
@@ -57,7 +57,7 @@ export function renderProjects(filter = 'all', page = 1) {
             </button>
             ${proj.liveUrl ? `
             <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" onclick="event.stopPropagation();">
-              <span>Live Demo</span>
+              <span>${proj.liveLabel || 'Live Demo'}</span>
               <i data-lucide="external-link"></i>
             </a>` : ''}
           </div>
@@ -71,7 +71,7 @@ export function renderProjects(filter = 'all', page = 1) {
           <div class="project-footer">
             ${proj.liveUrl ? `
             <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link" style="color:var(--accent-cyan);">
-              <span>Live Demo</span>
+              <span>${proj.liveLabel || 'Live Demo'}</span>
               <i data-lucide="external-link"></i>
             </a>` : `
             <a href="${proj.liveUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link" style="opacity:0.45;">
@@ -204,7 +204,7 @@ export function openProjectModal(id) {
     <div style="display:flex; gap:16px; flex-wrap:wrap;">
       ${proj.liveUrl ? `
       <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-        <span>Buka Live Demo</span>
+        <span>${proj.modalLiveLabel || proj.liveLabel || 'Buka Live Demo'}</span>
         <i data-lucide="external-link"></i>
       </a>` : ''}
       <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">

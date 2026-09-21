@@ -7,6 +7,24 @@
 export const allProjectsData = [
   {
     id: 1,
+    title: 'ConsoleFix - AI JavaScript Error Solver',
+    category: ['extension', 'ai', 'webapp'],
+    tags: ['Chrome Extension', 'Manifest V3', 'Gemini AI', 'RAG', 'Vector Search', 'Supabase', 'Node.js'],
+    image: '/consolefix-banner.jpg',
+    desc: 'Ekstensi Chrome berbasis Google Gemini AI & RAG untuk mendeteksi, mendiagnosa, dan memberikan solusi perbaikan instan terhadap runtime error JavaScript di console browser secara otomatis dan real-time.',
+    liveUrl: 'https://chromewebstore.google.com/detail/kpbcjbeicmhhhnaofmjjnogninnmepkd?utm_source=item-share-cb',
+    githubUrl: 'https://github.com/Belajargihh/ConsoleFix-Deploy',
+    liveLabel: 'Chrome Store',
+    modalLiveLabel: 'Pasang dari Chrome Web Store',
+    highlights: [
+      'Dipublikasikan resmi di Google Chrome Web Store (Manifest V3)',
+      'Auto-Capture Error: Otomatis mendeteksi exception dan error runtime langsung dari console browser',
+      'Retrieval-Augmented Generation (RAG): Pencarian kesamaan vektor (Vector Search) di database Supabase pgvector untuk solusi terverifikasi',
+      'AI Analysis & Code Fix: Memberikan analisa akar masalah beserta snippet solusi kode perbaikan siap pakai dari Google Gemini AI'
+    ]
+  },
+  {
+    id: 2,
     title: 'AirCheck - AI Air Quality Expert System',
     category: ['webapp', 'ai'],
     tags: ['Python', 'Flask', 'Naive Bayes', 'NLP', 'Tailwind CSS', 'Vercel'],
@@ -22,7 +40,7 @@ export const allProjectsData = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: 'MyWatchlist Tracker App',
     category: 'webapp',
     tags: ['JavaScript', 'Tailwind CSS', 'TMDB API', 'AniList API', 'Vercel'],
@@ -38,7 +56,7 @@ export const allProjectsData = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: 'TBM Web Application',
     category: 'webapp',
     tags: ['JavaScript', 'HTML', 'CSS', 'Vercel'],
@@ -49,7 +67,7 @@ export const allProjectsData = [
     highlights: ['Live Deployment di Vercel', 'Desain Web Responsif', 'Performa Web Cepat & Ringan']
   },
   {
-    id: 4,
+    id: 5,
     title: 'YOLO & DeepSORT BBQ Queue Tracking',
     category: 'ai',
     tags: ['Python', 'YOLO', 'DeepSORT', 'Computer Vision', 'Jupyter Notebook'],
@@ -60,7 +78,7 @@ export const allProjectsData = [
     highlights: ['Deteksi & Pelacakan Objek Realtime', 'Implementasi YOLO & DeepSORT', 'Analisis Kepadatan & Waktu Antrian']
   },
   {
-    id: 5,
+    id: 6,
     title: 'Academic PDF NLP Chatbot',
     category: 'ai',
     tags: ['Python', 'NLP', 'PDF Processing', 'Jupyter Notebook'],
@@ -71,7 +89,7 @@ export const allProjectsData = [
     highlights: ['Ekstraksi Informasi PDF Otomatis', 'Pemrosesan Bahasa Alami (NLP)', 'Asisten Akademik Cerdas']
   },
   {
-    id: 6,
+    id: 7,
     title: 'YOLOv11 Stationery Object Detection',
     category: 'ai',
     tags: ['Python', 'YOLOv11', 'Object Detection', 'Computer Vision'],
@@ -82,7 +100,7 @@ export const allProjectsData = [
     highlights: ['Model Deteksi YOLOv11 Terbaru', 'Dataset & Pelatihan Kustom', 'Klasifikasi Presisi Tinggi']
   },
   {
-    id: 7,
+    id: 8,
     title: 'SaaS News GeoPreview Platform',
     category: 'webapp',
     tags: ['JavaScript', 'HTML', 'CSS', 'SaaS'],
@@ -93,7 +111,7 @@ export const allProjectsData = [
     highlights: ['Konsep Platform SaaS', 'Integrasi Berita & Geolokasi', 'UI/UX Modern & Sleek']
   },
   {
-    id: 8,
+    id: 9,
     title: 'MathGenius Educational Game & App',
     category: 'desktop',
     tags: ['C#', 'Unity', 'ASP.NET'],
@@ -104,7 +122,7 @@ export const allProjectsData = [
     highlights: ['Pengembangan Engine Unity & C#', 'Backend ASP.NET', 'Media Pembelajaran Interaktif']
   },
   {
-    id: 9,
+    id: 10,
     title: 'Machine Learning Algorithm & Models',
     category: 'ai',
     tags: ['Python', 'Scikit-Learn', 'Machine Learning', 'Jupyter Notebook'],
@@ -115,7 +133,7 @@ export const allProjectsData = [
     highlights: ['Analisis Exploratory Data (EDA)', 'Model Supervised Learning', 'Evaluasi Performa Model']
   },
   {
-    id: 10,
+    id: 11,
     title: 'EduLearn C# Desktop Application',
     category: 'desktop',
     tags: ['C#', '.NET', 'Desktop App'],
