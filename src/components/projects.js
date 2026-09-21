@@ -6,7 +6,7 @@ import * as lucide from 'lucide';
 import { projectsData, getProjectImage } from '../data/projects.js';
 
 let currentProjectsPage = 1;
-function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 6; }
+function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 let currentCategoryFilter = 'all';
 
 export function renderProjects(filter = 'all', page = 1) {

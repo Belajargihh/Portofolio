@@ -10,7 +10,7 @@ export const allProjectsData = [
     title: 'ConsoleFix - AI JavaScript Error Solver',
     category: ['extension', 'ai', 'webapp'],
     tags: ['Chrome Extension', 'Manifest V3', 'Gemini AI', 'RAG', 'Vector Search', 'Supabase', 'Node.js'],
-    image: '/consolefix-banner.jpg',
+    image: '',
     desc: 'Ekstensi Chrome berbasis Google Gemini AI & RAG untuk mendeteksi, mendiagnosa, dan memberikan solusi perbaikan instan terhadap runtime error JavaScript di console browser secara otomatis dan real-time.',
     liveUrl: 'https://chromewebstore.google.com/detail/kpbcjbeicmhhhnaofmjjnogninnmepkd?utm_source=item-share-cb',
     githubUrl: 'https://github.com/Belajargihh/ConsoleFix-Deploy',
