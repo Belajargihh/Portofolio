@@ -41,6 +41,26 @@ export const allProjectsData = [
   },
   {
     id: 3,
+    title: 'NewsGeo - AI Geospatial News Intelligence Platform',
+    category: ['webapp', 'ai'],
+    tags: ['JavaScript', 'Firebase', 'Leaflet.js', 'NLP', 'Tailwind CSS', 'Vercel'],
+    image: '',
+    desc: 'Platform SaaS intelijen berita dan analisis geospasial berbasis AI & NLP yang secara otomatis memetakan lokasi peristiwa berita ke peta interaktif Leaflet.js, menghasilkan ringkasan berita cerdas, analisis tren heatmap, serta autentikasi Firebase dengan role membership.',
+    liveUrl: 'https://saa-s-news-geo-priview.vercel.app/',
+    githubUrl: 'https://github.com/Belajargihh/SaaS-NewsGeoPriview',
+    liveLabel: 'Live Demo',
+    modalLiveLabel: 'Kunjungi NewsGeo Web App',
+    highlights: [
+      'Geocoding & Pemetaan Berita Otomatis: Deteksi lokasi berita dan visualisasi peta interaktif Leaflet.js',
+      'Ringkasan Cerdas AI (NLP): Ekstraksi ringkasan inti berita secara cepat dan otomatis',
+      'Analisis Tren & Heatmap: Visualisasi sebaran intensitas dan popularitas topik berita terkini',
+      'Firebase Authentication: Autentikasi aman terintegrasi Google Sign-In & Email/Password',
+      'Role-Based Access Control: Sistem keanggotaan (Free vs Premium Member) tersinkronisasi di Cloud Firestore',
+      'Live Serverless Web Deployment di Platform Vercel'
+    ]
+  },
+  {
+    id: 4,
     title: 'MyWatchlist Tracker App',
     category: 'webapp',
     tags: ['JavaScript', 'Tailwind CSS', 'TMDB API', 'AniList API', 'Vercel'],
@@ -56,7 +76,7 @@ export const allProjectsData = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'TBM Web Application',
     category: 'webapp',
     tags: ['JavaScript', 'HTML', 'CSS', 'Vercel'],
@@ -67,7 +87,7 @@ export const allProjectsData = [
     highlights: ['Live Deployment di Vercel', 'Desain Web Responsif', 'Performa Web Cepat & Ringan']
   },
   {
-    id: 5,
+    id: 6,
     title: 'YOLO & DeepSORT BBQ Queue Tracking',
     category: 'ai',
     tags: ['Python', 'YOLO', 'DeepSORT', 'Computer Vision', 'Jupyter Notebook'],
@@ -78,7 +98,7 @@ export const allProjectsData = [
     highlights: ['Deteksi & Pelacakan Objek Realtime', 'Implementasi YOLO & DeepSORT', 'Analisis Kepadatan & Waktu Antrian']
   },
   {
-    id: 6,
+    id: 7,
     title: 'Academic PDF NLP Chatbot',
     category: 'ai',
     tags: ['Python', 'NLP', 'PDF Processing', 'Jupyter Notebook'],
@@ -89,7 +109,7 @@ export const allProjectsData = [
     highlights: ['Ekstraksi Informasi PDF Otomatis', 'Pemrosesan Bahasa Alami (NLP)', 'Asisten Akademik Cerdas']
   },
   {
-    id: 7,
+    id: 8,
     title: 'YOLOv11 Stationery Object Detection',
     category: 'ai',
     tags: ['Python', 'YOLOv11', 'Object Detection', 'Computer Vision'],
@@ -98,17 +118,6 @@ export const allProjectsData = [
     liveUrl: '',
     githubUrl: 'https://github.com/Belajargihh/YOLO11_Alat_Tulis',
     highlights: ['Model Deteksi YOLOv11 Terbaru', 'Dataset & Pelatihan Kustom', 'Klasifikasi Presisi Tinggi']
-  },
-  {
-    id: 8,
-    title: 'SaaS News GeoPreview Platform',
-    category: 'webapp',
-    tags: ['JavaScript', 'HTML', 'CSS', 'SaaS'],
-    image: '',
-    desc: 'Platform SaaS web untuk pratinjau berita berbasis geolokasi dan antarmuka pengguna modern.',
-    liveUrl: '',
-    githubUrl: 'https://github.com/Belajargihh/SaaS-NewsGeoPriview',
-    highlights: ['Konsep Platform SaaS', 'Integrasi Berita & Geolokasi', 'UI/UX Modern & Sleek']
   },
   {
     id: 9,
