@@ -1,10 +1,11 @@
 import * as lucide from 'lucide';
 import { experienceData } from '../data/experience.js';
+import { getCurrentLang, getTranslation, localize } from '../i18n.js';
 
 let currentExpPage = 1;
 function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 
-export function renderExperience(page = 1) {
+export function renderExperience(page = currentExpPage) {
   currentExpPage = page;
   const container = document.getElementById('experience-grid');
   const paginationContainer = document.getElementById('experience-pagination');
@@ -16,41 +17,53 @@ export function renderExperience(page = 1) {
   const startIndex = (currentExpPage - 1) * getItemsPerPage();
   const paginatedItems = experienceData.slice(startIndex, startIndex + getItemsPerPage());
 
-  container.innerHTML = paginatedItems.map(item => `
-    <div class="project-card exp-card" data-cursor="pointer">
-      <div class="project-body exp-body">
-        <div class="exp-top-banner">
-          <div class="exp-period-badge"><i data-lucide="calendar"></i> ${item.period}</div>
-          <div class="project-tags">
-            ${(item.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-          </div>
-        </div>
-        
-        <div class="exp-header-info">
-          <h3 class="exp-company-title">
-            <i data-lucide="building-2"></i> ${item.company}
-          </h3>
-          ${item.location ? `
-            <div class="exp-location">
-              <i data-lucide="map-pin"></i> ${item.location}
-            </div>
-          ` : ''}
-          <div class="exp-role-badge">
-            <i data-lucide="briefcase"></i> ${item.role}
-          </div>
-        </div>
+  const lang = getCurrentLang();
 
-        <ul class="exp-bullet-list">
-          ${(item.highlights || []).map(h => `
-            <li class="exp-bullet-item">
-              <i data-lucide="check-circle-2"></i>
-              <span>${h}</span>
-            </li>
-          `).join('')}
-        </ul>
+  container.innerHTML = paginatedItems.map(item => {
+    const role = localize(item.role, lang);
+    const company = localize(item.company, lang);
+    const location = localize(item.location, lang);
+    const period = localize(item.period, lang);
+    const highlights = Array.isArray(item.highlights)
+      ? item.highlights
+      : (item.highlights ? (item.highlights[lang] || item.highlights.id || []) : []);
+
+    return `
+      <div class="project-card exp-card" data-cursor="pointer">
+        <div class="project-body exp-body">
+          <div class="exp-top-banner">
+            <div class="exp-period-badge"><i data-lucide="calendar"></i> ${period}</div>
+            <div class="project-tags">
+              ${(item.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
+          </div>
+          
+          <div class="exp-header-info">
+            <h3 class="exp-company-title">
+              <i data-lucide="building-2"></i> ${company}
+            </h3>
+            ${location ? `
+              <div class="exp-location">
+                <i data-lucide="map-pin"></i> ${location}
+              </div>
+            ` : ''}
+            <div class="exp-role-badge">
+              <i data-lucide="briefcase"></i> ${role}
+            </div>
+          </div>
+
+          <ul class="exp-bullet-list">
+            ${highlights.map(h => `
+              <li class="exp-bullet-item">
+                <i data-lucide="check-circle-2"></i>
+                <span>${h}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   renderExpPaginationControls(paginationContainer, totalPages, currentExpPage, (newPage) => {
     renderExperience(newPage);
@@ -74,13 +87,16 @@ function renderExpPaginationControls(container, totalPages, currentPage, onPageC
     return;
   }
 
-  let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="exp-prev" data-cursor="pointer"><i data-lucide="chevron-left"></i> Prev</button>`;
+  const prevText = getTranslation('experience.prev');
+  const nextText = getTranslation('experience.next');
+
+  let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="exp-prev" data-cursor="pointer"><i data-lucide="chevron-left"></i> ${prevText}</button>`;
 
   for (let i = 1; i <= totalPages; i++) {
     html += `<button class="page-number ${i === currentPage ? 'active' : ''}" data-page="${i}" data-cursor="pointer">${i}</button>`;
   }
 
-  html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="exp-next" data-cursor="pointer">Next <i data-lucide="chevron-right"></i></button>`;
+  html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="exp-next" data-cursor="pointer">${nextText} <i data-lucide="chevron-right"></i></button>`;
 
   container.innerHTML = html;
 
@@ -100,4 +116,11 @@ function renderExpPaginationControls(container, totalPages, currentPage, onPageC
   if (nextBtn && currentPage < totalPages) {
     nextBtn.addEventListener('click', () => onPageChange(currentPage + 1));
   }
+}
+
+// Bind language change listener once
+if (typeof window !== 'undefined') {
+  window.addEventListener('languageChanged', () => {
+    renderExperience(currentExpPage);
+  });
 }

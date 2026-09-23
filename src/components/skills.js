@@ -1,6 +1,8 @@
 /* ==========================================================================
-   SKILLS & TOOLS STACK (DOM TAB FILTERING & 5x3 SHOW MORE/LESS)
+   SKILLS & TOOLS STACK (DOM TAB FILTERING & 5x3 SHOW MORE/LESS with i18n)
    ========================================================================== */
+
+import { getTranslation } from '../i18n.js';
 
 export function initSkillsTabs() {
   const tabs = document.querySelectorAll('.skills-tabs .tab-btn');
@@ -43,13 +45,12 @@ export function initSkillsTabs() {
     if (toggleBtn) {
       if (matchingCards.length > getDefaultLimit()) {
         toggleBtn.style.display = 'inline-flex';
-        const remainingCount = matchingCards.length - getDefaultLimit();
 
         if (isExpanded) {
-          if (toggleText) toggleText.textContent = 'Show Less';
+          if (toggleText) toggleText.textContent = getTranslation('skills.showLess');
           if (toggleIcon) toggleIcon.setAttribute('data-lucide', 'chevron-up');
         } else {
-          if (toggleText) toggleText.textContent = 'Show More';
+          if (toggleText) toggleText.textContent = getTranslation('skills.showMore');
           if (toggleIcon) toggleIcon.setAttribute('data-lucide', 'chevron-down');
         }
 
@@ -92,7 +93,11 @@ export function initSkillsTabs() {
     });
   }
 
+  // Re-update toggle text when language changes
+  window.addEventListener('languageChanged', () => {
+    updateSkillsDisplay();
+  });
+
   // Initial render
   updateSkillsDisplay();
 }
-

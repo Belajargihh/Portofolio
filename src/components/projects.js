@@ -1,15 +1,16 @@
 /* ==========================================================================
-   PROJECTS GALLERY WITH 3x2 GRID & PAGINATION ENGINE (Safe Icons)
+   PROJECTS GALLERY WITH 3x2 GRID & PAGINATION ENGINE (Safe Icons & i18n)
    ========================================================================== */
 
 import * as lucide from 'lucide';
 import { projectsData, getProjectImage } from '../data/projects.js';
+import { getCurrentLang, getTranslation, localize } from '../i18n.js';
 
 let currentProjectsPage = 1;
 function getItemsPerPage() { return window.innerWidth < 768 ? 2 : 3; }
 let currentCategoryFilter = 'all';
 
-export function renderProjects(filter = 'all', page = 1) {
+export function renderProjects(filter = currentCategoryFilter, page = currentProjectsPage) {
   currentCategoryFilter = filter;
   currentProjectsPage = page;
 
@@ -31,8 +32,8 @@ export function renderProjects(filter = 'all', page = 1) {
     container.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; color: var(--text-muted);">
         <i data-lucide="folder-x" style="width: 48px; height: 48px; margin: 0 auto 16px; display: block; opacity: 0.5;"></i>
-        <p style="font-size: 1.1rem; margin-bottom: 8px;">Belum ada proyek dengan demo live di kategori ini.</p>
-        <p style="font-size: 0.9rem; opacity: 0.7;">Demo akan segera ditampilkan setelah proses deployment selesai.</p>
+        <p style="font-size: 1.1rem; margin-bottom: 8px;">${getTranslation('projects.emptyTitle')}</p>
+        <p style="font-size: 0.9rem; opacity: 0.7;">${getTranslation('projects.emptySub')}</p>
       </div>
     `;
     if (paginationContainer) paginationContainer.innerHTML = '';
@@ -44,20 +45,28 @@ export function renderProjects(filter = 'all', page = 1) {
     return;
   }
 
+  const lang = getCurrentLang();
+
   container.innerHTML = paginatedItems.map(proj => {
     const imageUrl = getProjectImage(proj);
+    const title = localize(proj.title, lang);
+    const desc = localize(proj.desc, lang);
+    const liveLabel = localize(proj.liveLabel, lang) || getTranslation('projects.liveDemo', lang);
+    const viewDetailsText = getTranslation('projects.viewDetails', lang);
+    const sourceCodeText = getTranslation('projects.sourceCode', lang);
+
     return `
       <div class="project-card" data-cursor="pointer">
         <div class="project-img-wrapper">
-          <img src="${imageUrl}" alt="${proj.title}" class="project-img" loading="lazy" />
+          <img src="${imageUrl}" alt="${title}" class="project-img" loading="lazy" />
           <div class="project-overlay">
             <button class="btn btn-primary btn-sm view-details-btn" data-id="${proj.id}">
-              <span>Detail Proyek</span>
+              <span>${viewDetailsText}</span>
               <i data-lucide="eye"></i>
             </button>
             ${proj.liveUrl ? `
             <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" onclick="event.stopPropagation();">
-              <span>${proj.liveLabel || 'Live Demo'}</span>
+              <span>${liveLabel}</span>
               <i data-lucide="external-link"></i>
             </a>` : ''}
           </div>
@@ -66,21 +75,21 @@ export function renderProjects(filter = 'all', page = 1) {
           <div class="project-tags">
             ${(proj.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
           </div>
-          <h3 class="project-title">${proj.title}</h3>
-          <p class="project-desc">${proj.desc}</p>
+          <h3 class="project-title">${title}</h3>
+          <p class="project-desc">${desc}</p>
           <div class="project-footer">
             ${proj.liveUrl ? `
             <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link" style="color:var(--accent-cyan);">
-              <span>${proj.liveLabel || 'Live Demo'}</span>
+              <span>${liveLabel}</span>
               <i data-lucide="external-link"></i>
             </a>` : `
             <a href="${proj.liveUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link" style="opacity:0.45;">
-              <span>Live Demo</span>
+              <span>${getTranslation('projects.liveDemo', lang)}</span>
               <i data-lucide="external-link"></i>
             </a>`}
             <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link">
               <i data-lucide="git-branch"></i>
-              <span>Source Code</span>
+              <span>${sourceCodeText}</span>
             </a>
           </div>
         </div>
@@ -120,13 +129,16 @@ function renderPaginationControls(container, totalPages, currentPage, onPageChan
     return;
   }
 
-  let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="proj-prev" data-cursor="pointer"><i data-lucide="chevron-left"></i> Prev</button>`;
+  const prevText = getTranslation('projects.prev');
+  const nextText = getTranslation('projects.next');
+
+  let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="proj-prev" data-cursor="pointer"><i data-lucide="chevron-left"></i> ${prevText}</button>`;
 
   for (let i = 1; i <= totalPages; i++) {
     html += `<button class="page-number ${i === currentPage ? 'active' : ''}" data-page="${i}" data-cursor="pointer">${i}</button>`;
   }
 
-  html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="proj-next" data-cursor="pointer">Next <i data-lucide="chevron-right"></i></button>`;
+  html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="proj-next" data-cursor="pointer">${nextText} <i data-lucide="chevron-right"></i></button>`;
 
   container.innerHTML = html;
 
@@ -180,36 +192,46 @@ export function openProjectModal(id) {
   const proj = projectsData.find(p => p.id === id);
   if (!proj) return;
 
+  const lang = getCurrentLang();
   const imageUrl = getProjectImage(proj);
   const modal = document.getElementById('project-modal');
   const modalBody = document.getElementById('modal-body');
 
+  const title = localize(proj.title, lang);
+  const desc = localize(proj.desc, lang);
+  const highlightsList = Array.isArray(proj.highlights)
+    ? proj.highlights
+    : (proj.highlights ? (proj.highlights[lang] || proj.highlights.id || []) : []);
+  const modalLiveLabel = localize(proj.modalLiveLabel, lang) || localize(proj.liveLabel, lang) || getTranslation('projects.modalLiveDefault', lang);
+  const modalSourceCodeText = getTranslation('projects.modalSourceCode', lang);
+  const modalHighlightsHeader = getTranslation('projects.modalHighlights', lang);
+
   modalBody.innerHTML = `
     <div class="modal-header">
-      <img src="${imageUrl}" alt="${proj.title}" style="width:100%; height:280px; object-fit:cover; border-radius:12px; margin-bottom:20px;" />
+      <img src="${imageUrl}" alt="${title}" style="width:100%; height:280px; object-fit:cover; border-radius:12px; margin-bottom:20px;" />
       <div class="project-tags" style="margin-bottom:10px;">
         ${(proj.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('')}
       </div>
-      <h2 style="font-size:1.8rem; margin-bottom:12px;">${proj.title}</h2>
-      <p style="color:var(--text-muted); margin-bottom:24px;">${proj.desc}</p>
+      <h2 style="font-size:1.8rem; margin-bottom:12px;">${title}</h2>
+      <p style="color:var(--text-muted); margin-bottom:24px;">${desc}</p>
     </div>
     
     <div style="margin-bottom:24px;">
-      <h4 style="margin-bottom:12px; color:var(--accent-cyan);">Highlight & Fitur Utama:</h4>
+      <h4 style="margin-bottom:12px; color:var(--accent-cyan);">${modalHighlightsHeader}</h4>
       <ul style="list-style:disc; padding-left:20px; color:var(--text-muted);">
-        ${(proj.highlights || []).map(h => `<li style="margin-bottom:6px;">${h}</li>`).join('')}
+        ${highlightsList.map(h => `<li style="margin-bottom:6px;">${h}</li>`).join('')}
       </ul>
     </div>
 
     <div style="display:flex; gap:16px; flex-wrap:wrap;">
       ${proj.liveUrl ? `
       <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-        <span>${proj.modalLiveLabel || proj.liveLabel || 'Buka Live Demo'}</span>
+        <span>${modalLiveLabel}</span>
         <i data-lucide="external-link"></i>
       </a>` : ''}
       <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
         <i data-lucide="git-branch"></i>
-        <span>Lihat Source Code</span>
+        <span>${modalSourceCodeText}</span>
       </a>
     </div>
   `;
@@ -236,4 +258,9 @@ export function initModalEvents() {
       if (e.target === modal) modal.classList.remove('open');
     });
   }
+
+  // Listen to language changes and re-render projects
+  window.addEventListener('languageChanged', () => {
+    renderProjects(currentCategoryFilter, currentProjectsPage);
+  });
 }

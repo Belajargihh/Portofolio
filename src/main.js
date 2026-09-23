@@ -3,6 +3,7 @@
    ========================================================================== */
 
 import * as lucide from 'lucide';
+import { initI18n, getCurrentLang, getTranslation } from './i18n.js';
 import { LanyardPhysicsEngine } from './components/lanyard.js';
 import { CustomCursorEngine } from './components/cursor.js';
 import { TypewriterEngine } from './components/typing.js';
@@ -23,6 +24,13 @@ function initApp() {
     }
   } catch (e) {
     console.warn('Lucide init warning:', e);
+  }
+
+  // 1b. Initialize Internationalization (i18n ID / ENG)
+  try {
+    initI18n();
+  } catch (e) {
+    console.error('i18n init error:', e);
   }
 
   // 2. Initialize Skills Tab Filter
@@ -62,14 +70,23 @@ function initApp() {
     console.error('Cursor engine error:', e);
   }
 
-  // 5. Initialize Dynamic Typewriter Effect
+  // 5. Initialize Dynamic Typewriter Effect with Bilingual Phrases
   try {
-    new TypewriterEngine('typing-element', [
-      'Junior Full-Stack',
+    const phrases = getTranslation('hero.typewriter', getCurrentLang()) || [
+      'Junior Full-Stack Developer',
       'Fresh Graduate',
-      'Frontend & Backend',
+      'Frontend & Backend Engineer',
       'AI-Assisted Coder'
-    ]);
+    ];
+    const typewriter = new TypewriterEngine('typing-element', phrases);
+
+    window.addEventListener('languageChanged', (e) => {
+      const lang = e.detail?.lang || getCurrentLang();
+      const updatedPhrases = getTranslation('hero.typewriter', lang);
+      if (typewriter && updatedPhrases) {
+        typewriter.setPhrases(updatedPhrases);
+      }
+    });
   } catch (e) {
     console.error('Typewriter error:', e);
   }
@@ -207,7 +224,7 @@ function initApp() {
         playBeepSound();
       });
 
-      document.querySelectorAll('.btn, .nav-link, .tab-btn, .filter-btn, .page-number, .page-btn').forEach(el => {
+      document.querySelectorAll('.btn, .nav-link, .tab-btn, .filter-btn, .page-number, .page-btn, .lang-btn').forEach(el => {
         el.addEventListener('mouseenter', () => playBeepSound());
       });
     }

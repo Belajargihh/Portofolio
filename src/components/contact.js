@@ -1,6 +1,8 @@
 /* ==========================================================================
-   CONTACT FORM & UTILITY ENGINE
+   CONTACT FORM & UTILITY ENGINE (with i18n support)
    ========================================================================== */
+
+import { getTranslation } from '../i18n.js';
 
 export function initContactForm() {
   const form = document.getElementById('contact-form');
@@ -18,7 +20,7 @@ export function initContactForm() {
 
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Mengirim...</span> <i data-lucide="loader-2" class="spin"></i>`;
+    submitBtn.innerHTML = `<span>${getTranslation('contact.sending')}</span> <i data-lucide="loader-2" class="spin"></i>`;
     if (window.lucide) window.lucide.createIcons();
 
     try {
@@ -38,24 +40,30 @@ export function initContactForm() {
       const data = await res.json();
 
       if (data.success) {
-        submitBtn.innerHTML = `<span>Pesan Terkirim!</span> <i data-lucide="check"></i>`;
+        submitBtn.innerHTML = `<span>${getTranslation('contact.sentSuccess')}</span> <i data-lucide="check"></i>`;
         responseDiv.className = 'form-response success';
-        responseDiv.textContent = `Terima kasih ${name}! Pesan Anda telah berhasil terkirim. Saya akan segera menghubungi Anda melalui ${email}.`;
+        const successFn = getTranslation('contact.successMsg');
+        responseDiv.textContent = typeof successFn === 'function' 
+          ? successFn(name, email) 
+          : `Terima kasih ${name}! Pesan Anda telah berhasil terkirim.`;
         form.reset();
       } else {
         throw new Error(data.message || 'Gagal mengirim pesan');
       }
     } catch (err) {
-      submitBtn.innerHTML = `<span>Gagal Mengirim</span> <i data-lucide="alert-circle"></i>`;
+      submitBtn.innerHTML = `<span>${getTranslation('contact.sendFailed')}</span> <i data-lucide="alert-circle"></i>`;
       responseDiv.className = 'form-response';
       responseDiv.style.color = '#ef4444';
-      responseDiv.textContent = `Maaf, terjadi kesalahan: ${err.message}. Silakan coba lagi atau hubungi langsung via email.`;
+      const errorFn = getTranslation('contact.errorMsg');
+      responseDiv.textContent = typeof errorFn === 'function' 
+        ? errorFn(err.message) 
+        : `Maaf, terjadi kesalahan: ${err.message}.`;
     } finally {
       if (window.lucide) window.lucide.createIcons();
       submitBtn.disabled = false;
 
       setTimeout(() => {
-        submitBtn.innerHTML = `<span>Kirim Pesan</span> <i data-lucide="send"></i>`;
+        submitBtn.innerHTML = `<span>${getTranslation('contact.sendBtn')}</span> <i data-lucide="send"></i>`;
         if (window.lucide) window.lucide.createIcons();
       }, 4000);
     }
