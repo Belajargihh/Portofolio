@@ -467,7 +467,19 @@ h1, h2, h3, h4, h5, h6 {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+}
+
+@media (min-width: 1024px) {
+  .nav-actions {
+    transform: translateX(50px);
+  }
+}
+
+@media (min-width: 1366px) {
+  .nav-actions {
+    transform: translateX(75px);
+  }
 }
 
 /* Language Switcher (Segmented Glassmorphic Pill) */
