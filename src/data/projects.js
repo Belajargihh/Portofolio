@@ -46,6 +46,46 @@ export const allProjectsData = [
   {
     id: 2,
     title: {
+      id: 'CelerySens - AI Pakar Diagnosa & Perawatan Tanaman Seledri',
+      eng: 'CelerySens - AI Celery Crop Expert Assistant'
+    },
+    category: ['webapp', 'ai'],
+    tags: ['Python', 'Flask', 'Google Gemini AI', 'Speech-to-Text', 'NLP', 'Tailwind CSS', 'Vercel'],
+    image: '/celerysens-preview.png',
+    desc: {
+      id: 'Platform chatbot asisten kecerdasan buatan (AI) cerdas khusus budidaya tanaman seledri (Apium graveolens) untuk mendeteksi hama & penyakit, memberikan rekomendasi perawatan terpadu berbasis rujukan pakar pertanian terakreditasi BNSP, serta dilengkapi input suara interaktif.',
+      eng: 'AI-powered intelligent expert assistant for celery crops (Apium graveolens) to diagnose pests & diseases and provide scientifically verified care recommendations based on BNSP-certified agricultural expertise with voice input support.'
+    },
+    liveUrl: 'https://celerycens.vercel.app/',
+    githubUrl: 'https://github.com/Belajargihh/Celerycens',
+    liveLabel: {
+      id: 'Live Demo',
+      eng: 'Live Demo'
+    },
+    modalLiveLabel: {
+      id: 'Kunjungi CelerySens Web App',
+      eng: 'Visit CelerySens Web App'
+    },
+    highlights: {
+      id: [
+        'Diagnosis Cepat & Akurat: Analisis gejala hama dan penyakit khas tanaman seledri (Apium graveolens) berbasis kecerdasan buatan',
+        'Integrasi Google Gemini Flash API: Rekomendasi solusi teknis, organik, hingga kimiawi sesuai standar keilmuan pertanian',
+        'Basis Pengetahuan Pakar Terverifikasi: Data rujukan divalidasi oleh pakar pertanian bersertifikasi resmi BNSP',
+        'Fitur Chat & Interaksi Suara: Dilengkapi Speech Recognition (Voice Input), Text-to-Speech, dan salin hasil konsultasi instan',
+        'Arsitektur Ramping & Serverless: Backend Flask teroptimasi yang dideploy secara live di platform Vercel'
+      ],
+      eng: [
+        'Fast & Accurate Diagnosis: AI-driven analysis of pests and characteristic diseases in celery crops (Apium graveolens)',
+        'Google Gemini Flash API Integration: Technical, organic, and chemical treatment recommendations adhering to agronomic standards',
+        'Verified Expert Knowledge Base: Curated reference data validated by BNSP-certified agricultural experts',
+        'Interactive Voice & Chat Capabilities: Features Speech Recognition (Voice Input), Text-to-Speech, and one-click answer copying',
+        'Lightweight & Serverless Architecture: High-performance Flask backend deployed live on Vercel platform'
+      ]
+    }
+  },
+  {
+    id: 3,
+    title: {
       id: 'AirCheck - AI Air Quality Expert System',
       eng: 'AirCheck - AI Air Quality Expert System'
     },
@@ -82,7 +122,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 3,
+    id: 4,
     title: {
       id: 'NewsGeo - AI Geospatial News Intelligence Platform',
       eng: 'NewsGeo - AI Geospatial News Intelligence Platform'
@@ -124,7 +164,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 4,
+    id: 5,
     title: {
       id: 'MyWatchlist Tracker App',
       eng: 'MyWatchlist Tracker App'
@@ -162,7 +202,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 5,
+    id: 6,
     title: {
       id: 'TBM Web Application',
       eng: 'TBM Web Application'
@@ -198,7 +238,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 6,
+    id: 7,
     title: {
       id: 'YOLO & DeepSORT BBQ Queue Tracking',
       eng: 'YOLO & DeepSORT BBQ Queue Tracking'
@@ -218,7 +258,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 7,
+    id: 8,
     title: {
       id: 'Academic PDF NLP Chatbot',
       eng: 'Academic PDF NLP Chatbot'
@@ -238,7 +278,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 8,
+    id: 9,
     title: {
       id: 'YOLOv11 Stationery Object Detection',
       eng: 'YOLOv11 Stationery Object Detection'
@@ -258,7 +298,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 9,
+    id: 10,
     title: {
       id: 'MathGenius Educational Game & App',
       eng: 'MathGenius Educational Game & App'
@@ -278,7 +318,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 10,
+    id: 11,
     title: {
       id: 'Machine Learning Algorithm & Models',
       eng: 'Machine Learning Algorithm & Models'
@@ -298,7 +338,7 @@ export const allProjectsData = [
     }
   },
   {
-    id: 11,
+    id: 12,
     title: {
       id: 'EduLearn C# Desktop Application',
       eng: 'EduLearn C# Desktop Application'

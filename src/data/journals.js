@@ -19,7 +19,8 @@ export const journalsData = [
       id: 'Pengembangan sistem pakar berbasis Natural Language Processing (NLP) dengan arsitektur Retrieval-Augmented Generation (RAG) untuk mendiagnosis penyakit tanaman seledri secara cepat dan akurat. Menggunakan teknik embedding Transformer dan penalaran Forward Chaining dengan tingkat akurasi mencapai 97.14%, serta dilengkapi fitur speech-to-text dan text-to-speech.',
       eng: 'Development of an NLP-based expert system with Retrieval-Augmented Generation (RAG) architecture to diagnose celery plant diseases quickly and accurately. Utilizing Transformer embeddings and Forward Chaining reasoning with 97.14% accuracy, equipped with speech-to-text and text-to-speech capabilities.'
     },
-    pdfUrl: 'https://ojs.stikombanyuwangi.ac.id/index.php/jikom/article/download/267/134'
+    pdfUrl: 'https://ojs.stikombanyuwangi.ac.id/index.php/jikom/article/download/267/134',
+    liveUrl: 'https://celerycens.vercel.app/'
   },
   {
     id: 202,

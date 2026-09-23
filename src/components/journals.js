@@ -51,11 +51,16 @@ export function renderJournals(page = currentJournalPage) {
               <i data-lucide="external-link" style="width:12px; height:12px; display:inline-block;"></i>
             </a>
           </div>
-          <div class="project-footer" style="margin-top:16px;">
+          <div class="project-footer" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
             <a href="${journal.pdfUrl}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
               <span>${readJournalText}</span>
               <i data-lucide="file-text"></i>
             </a>
+            ${journal.liveUrl ? `
+            <a href="${journal.liveUrl}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+              <span>${getTranslation('projects.liveDemo', lang)}</span>
+              <i data-lucide="external-link"></i>
+            </a>` : ''}
           </div>
         </div>
       </div>

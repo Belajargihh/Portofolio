@@ -21,7 +21,7 @@ export function initContactForm() {
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span>${getTranslation('contact.sending')}</span> <i data-lucide="loader-2" class="spin"></i>`;
-    if (window.lucide) window.lucide.createIcons();
+    try { if (window.lucide) window.lucide.createIcons({ icons: window.lucide }); } catch (e) {}
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -59,12 +59,12 @@ export function initContactForm() {
         ? errorFn(err.message) 
         : `Maaf, terjadi kesalahan: ${err.message}.`;
     } finally {
-      if (window.lucide) window.lucide.createIcons();
+      try { if (window.lucide) window.lucide.createIcons({ icons: window.lucide }); } catch (e) {}
       submitBtn.disabled = false;
 
       setTimeout(() => {
         submitBtn.innerHTML = `<span>${getTranslation('contact.sendBtn')}</span> <i data-lucide="send"></i>`;
-        if (window.lucide) window.lucide.createIcons();
+        try { if (window.lucide) window.lucide.createIcons({ icons: window.lucide }); } catch (e) {}
       }, 4000);
     }
   });

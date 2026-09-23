@@ -311,7 +311,11 @@ export function applyTranslations(lang = currentLang) {
 
   // Re-run Lucide icons if available
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    window.lucide.createIcons();
+    try {
+      window.lucide.createIcons({ icons: window.lucide });
+    } catch (e) {
+      console.warn('Lucide createIcons warning:', e);
+    }
   }
 }
 

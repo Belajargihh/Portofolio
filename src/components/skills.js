@@ -56,7 +56,7 @@ export function initSkillsTabs() {
 
         try {
           if (window.lucide && typeof window.lucide.createIcons === 'function') {
-            window.lucide.createIcons();
+            window.lucide.createIcons({ icons: window.lucide });
           }
         } catch (e) {
           console.warn('Lucide re-render warning:', e);
