@@ -13,7 +13,7 @@ export const allProjectsData = [
     },
     category: ['extension', 'ai', 'webapp'],
     tags: ['Chrome Extension', 'Manifest V3', 'Gemini AI', 'RAG', 'Vector Search', 'Supabase', 'Node.js'],
-    image: '',
+    image: '/consolefix-preview.png',
     desc: {
       id: 'Ekstensi Chrome berbasis Google Gemini AI & RAG untuk mendeteksi, mendiagnosa, dan memberikan solusi perbaikan instan terhadap runtime error JavaScript di console browser secara otomatis dan real-time.',
       eng: 'Chrome extension powered by Google Gemini AI & RAG to detect, diagnose, and provide instant code fixes for JavaScript runtime errors in the browser console in real time.'
@@ -91,7 +91,7 @@ export const allProjectsData = [
     },
     category: ['webapp', 'ai'],
     tags: ['Python', 'Flask', 'Naive Bayes', 'NLP', 'Tailwind CSS', 'Vercel'],
-    image: '',
+    image: '/aircheck-preview.png',
     desc: {
       id: 'Aplikasi web sistem pakar berbasis AI & NLP (Naive Bayes) untuk menganalisis dan memprediksi kualitas udara secara real-time berdasarkan deskripsi lingkungan dan input suara.',
       eng: 'Web-based expert system powered by AI & NLP (Naive Bayes) to analyze and predict real-time air quality based on environmental descriptions and voice input.'
@@ -129,7 +129,7 @@ export const allProjectsData = [
     },
     category: ['webapp', 'ai'],
     tags: ['JavaScript', 'Firebase', 'Leaflet.js', 'NLP', 'Tailwind CSS', 'Vercel'],
-    image: '',
+    image: '/newsgeo-preview.png',
     desc: {
       id: 'Platform SaaS intelijen berita dan analisis geospasial berbasis AI & NLP yang secara otomatis memetakan lokasi peristiwa berita ke peta interaktif Leaflet.js, menghasilkan ringkasan berita cerdas, analisis tren heatmap, serta autentikasi Firebase dengan role membership.',
       eng: 'AI & NLP-powered geospatial intelligence and news analysis SaaS platform that automatically maps news events onto interactive Leaflet.js maps, generates intelligent news summaries, heatmap trend analytics, and Firebase role-based authentication.'
@@ -171,7 +171,7 @@ export const allProjectsData = [
     },
     category: 'webapp',
     tags: ['JavaScript', 'Tailwind CSS', 'TMDB API', 'AniList API', 'Vercel'],
-    image: '',
+    image: '/mywatchlist-preview.png',
     desc: {
       id: 'Aplikasi web pelacak film, serial TV, dan anime terpadu dengan integrasi TMDB & AniList API, manajemen personal watchlist, dan antarmuka modern responsif.',
       eng: 'Unified movie, TV series, and anime tracker web app with TMDB & AniList API integrations, personal watchlist management, and modern responsive interface.'
