@@ -1491,7 +1491,7 @@ h1, h2, h3, h4, h5, h6 {
 .projects-stack-viewport {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 580px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1572,7 +1572,7 @@ h1, h2, h3, h4, h5, h6 {
 .stack-card-img-wrapper {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 300px;
   overflow: hidden;
   background: #090d16;
 }
@@ -1610,11 +1610,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Card Body Content */
 .stack-card-body {
-  padding: 20px 24px 24px 24px;
+  padding: 16px 24px 20px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 1;
 }
 
 .stack-card-title {
@@ -1636,14 +1635,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-.stack-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 14px;
-  margin-top: auto;
-}
+/* Footer links removed from card - now in detail modal */
 
 /* Controls: Next/Prev Buttons + Dots Bar */
 .stack-controls-wrapper {
@@ -1730,7 +1722,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .stack-card-img-wrapper {
-    height: 180px;
+    height: 240px;
   }
 
   .stack-card-title {

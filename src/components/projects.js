@@ -85,22 +85,9 @@ export function renderProjects(filter = currentFilter, initialIndex = 0) {
 
         <!-- Card Content Body -->
         <div class="stack-card-body">
-          <div class="project-tags">
-            ${(proj.tags || []).slice(0, 3).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-          </div>
           <h3 class="stack-card-title">${title}</h3>
-          <p class="stack-card-desc">${desc}</p>
-          
-          <div class="stack-card-footer">
-            ${proj.liveUrl ? `
-            <a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link" style="color:var(--accent-cyan);" onclick="event.stopPropagation();">
-              <span>${liveLabel}</span>
-              <i data-lucide="external-link"></i>
-            </a>` : ''}
-            <a href="${proj.githubUrl || '#'}" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation();">
-              <i data-lucide="git-branch"></i>
-              <span>${sourceCodeText}</span>
-            </a>
+          <div class="project-tags">
+            ${(proj.tags || []).slice(0, 4).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
           </div>
         </div>
       </div>
