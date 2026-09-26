@@ -10,7 +10,7 @@ import { TypewriterEngine } from './components/typing.js';
 import { initSkillsTabs } from './components/skills.js';
 import { SkillsPuzzleEngine } from './components/puzzle.js';
 import { renderProjects, initProjectFilters, initModalEvents } from './components/projects.js';
-import { renderExperience } from './components/experience.js';
+import { renderExperience, initExperienceModalEvents } from './components/experience.js';
 import { renderJournals } from './components/journals.js';
 import { initContactForm, initClock } from './components/contact.js';
 import { UpsideDownAtmosphere } from './components/strangerThings.js';
@@ -100,9 +100,10 @@ function initApp() {
     console.error('Projects init error:', e);
   }
 
-  // 7. Initialize Experience / Past Projects (3x2 Grid + Pagination)
+  // 7. Initialize Experience / Past Projects (Interactive Alternating Timeline)
   try {
-    renderExperience(1);
+    renderExperience();
+    initExperienceModalEvents();
   } catch (e) {
     console.error('Experience init error:', e);
   }

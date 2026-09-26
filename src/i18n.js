@@ -76,6 +76,12 @@ export const translations = {
     experience: {
       tag: 'REKAM JEJAK KARYA',
       title: 'Pengalaman & <span class="text-gradient">Project Pekerjaan</span>',
+      viewDetails: 'Lihat Detail',
+      modalDoc: 'Dokumentasi & Galeri:',
+      modalHighlights: 'Tanggung Jawab & Kontribusi Kunci:',
+      modalRole: 'Peran / Jabatan:',
+      modalPeriod: 'Periode:',
+      modalLocation: 'Lokasi:',
       prev: 'Prev',
       next: 'Next'
     },
@@ -185,6 +191,12 @@ export const translations = {
     experience: {
       tag: 'CAREER TRACK RECORD',
       title: 'Experience & <span class="text-gradient">Work Projects</span>',
+      viewDetails: 'View Details',
+      modalDoc: 'Documentation & Gallery:',
+      modalHighlights: 'Key Responsibilities & Contributions:',
+      modalRole: 'Role / Position:',
+      modalPeriod: 'Period:',
+      modalLocation: 'Location:',
       prev: 'Prev',
       next: 'Next'
     },
