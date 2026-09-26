@@ -65,7 +65,7 @@ export class LanyardPhysicsEngine {
   }
 
   calculateTargetRopeLength() {
-    const card = document.querySelector('.about-bio-card') || document.querySelector('.terminal-card');
+    const card = document.querySelector('.about-bio-content') || document.querySelector('.terminal-card');
     if (card) {
       const rect = card.getBoundingClientRect();
       return Math.max(rect.top + window.scrollY - 45, 300);

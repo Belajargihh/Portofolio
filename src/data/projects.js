@@ -201,42 +201,7 @@ export const allProjectsData = [
       ]
     }
   },
-  {
-    id: 6,
-    title: {
-      id: 'TBM Web Application',
-      eng: 'TBM Web Application'
-    },
-    category: 'webapp',
-    tags: ['JavaScript', 'HTML', 'CSS', 'Vercel'],
-    image: '',
-    desc: {
-      id: 'Aplikasi web interaktif TBM yang telah dipublikasikan dan dapat diakses secara live melalui platform Vercel.',
-      eng: 'Interactive community library (TBM) web application published and accessible live via Vercel platform.'
-    },
-    liveUrl: 'https://tbm-pi.vercel.app',
-    githubUrl: 'https://github.com/Belajargihh/tbm',
-    liveLabel: {
-      id: 'Live Demo',
-      eng: 'Live Demo'
-    },
-    modalLiveLabel: {
-      id: 'Buka TBM Web App',
-      eng: 'Open TBM Web App'
-    },
-    highlights: {
-      id: [
-        'Live Deployment di Vercel',
-        'Desain Web Responsif',
-        'Performa Web Cepat & Ringan'
-      ],
-      eng: [
-        'Live Deployment on Vercel',
-        'Responsive Web Design',
-        'Fast & Lightweight Web Performance'
-      ]
-    }
-  },
+
   {
     id: 7,
     title: {
