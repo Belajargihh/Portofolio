@@ -37,12 +37,12 @@ export const translations = {
       bioTitle: 'Halo! Saya <span class="text-gradient">Billy Jes</span>',
       bioText1: 'Saya seorang <strong>Full-Stack Web Developer & AI Specialist</strong> yang berdedikasi untuk merancang dan membangun aplikasi web modern, cepat, responsif, dan mudah digunakan.',
       bioText2: 'Berpengalaman dalam mengintegrasikan antarmuka interaktif, arsitektur backend yang aman dan efisien, serta solusi berbasis teknologi AI untuk memenuhi berbagai kebutuhan digital Anda.',
-      highlight1Title: 'Web Development',
-      highlight1Sub: 'Frontend & Backend',
-      highlight2Title: 'AI Integration',
-      highlight2Sub: 'Machine Learning & NLP',
-      highlight3Title: 'Responsive UI/UX',
-      highlight3Sub: 'Desain Interaktif'
+      highlight1Title: 'Universitas Muhammadiyah Sorong',
+      highlight1Sub: 'Graduate 2026',
+      highlight2Title: 'Teknik Informatika',
+      highlight2Sub: 'S1 &bull; Software &amp; Web Dev',
+      highlight3Title: 'IPK 3.81 / 4.00',
+      highlight3Sub: 'Highly Satisfactory'
     },
     skills: {
       tag: 'KEAHLIAN TEKNIS',
@@ -152,12 +152,12 @@ export const translations = {
       bioTitle: 'Hi! I\'m <span class="text-gradient">Billy Jes</span>',
       bioText1: 'I am a <strong>Full-Stack Web Developer & AI Specialist</strong> dedicated to designing and building modern, fast, responsive, and intuitive web applications.',
       bioText2: 'Experienced in integrating interactive interfaces, secure and efficient backend architectures, and AI-driven solutions to solve complex digital challenges.',
-      highlight1Title: 'Web Development',
-      highlight1Sub: 'Frontend & Backend',
-      highlight2Title: 'AI Integration',
-      highlight2Sub: 'Machine Learning & NLP',
-      highlight3Title: 'Responsive UI/UX',
-      highlight3Sub: 'Interactive Design'
+      highlight1Title: 'Muhammadiyah Sorong University',
+      highlight1Sub: 'Graduate 2026',
+      highlight2Title: 'Informatics Engineering',
+      highlight2Sub: 'Bachelor\'s &bull; Software &amp; Web Dev',
+      highlight3Title: 'GPA 3.81 / 4.00',
+      highlight3Sub: 'Highly Satisfactory'
     },
     skills: {
       tag: 'TECHNICAL SKILLS',
