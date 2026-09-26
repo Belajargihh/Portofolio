@@ -1747,12 +1747,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Experience Card Styling */
-#experience-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
+/* Experience timeline container is styled via .experience-timeline-container */
 
 /* ==========================================================================
    EXPERIENCE SECTION - INTERACTIVE ALTERNATING VERTICAL TIMELINE
@@ -2874,10 +2869,7 @@ h1, h2, h3, h4, h5, h6 {
     min-height: auto;
   }
 
-  #experience-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+  /* experience-grid is now a timeline, no grid override needed */
 
   .projects-section .section-header {
     flex-direction: column;
