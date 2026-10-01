@@ -13,36 +13,28 @@ export const experienceData = [
       id: 'GOVERNMENT & WEB DEV',
       eng: 'GOVERNMENT & WEB DEV'
     },
-    year: '2025 - 2026',
+    year: '2025',
     company: 'Kantor Distrik Sorong Timur Kota Sorong',
     location: {
       id: 'Kota Sorong, Papua Barat Daya',
       eng: 'Sorong City, Southwest Papua'
     },
     period: {
-      id: 'Nov 2025 - Jan 2026',
-      eng: 'Nov 2025 - Jan 2026'
+      id: '28 Juli – 30 September 2025',
+      eng: '28 July – 30 September 2025'
     },
     title: {
       id: 'Website Profil Instansi Distrik Sorong Timur',
       eng: 'Official Profile Website of Sorong Timur District'
     },
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Web', 'Government'],
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop',
+    image: '/Distrik_1.jpeg',
     documentation: [
       {
-        url: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop',
-        caption: {
-          id: 'Perancangan Antarmuka & Navigasi Portal Layanan Publik',
-          eng: 'Public Service Portal UI & Navigation Design'
-        }
+        url: '/Distrik_1.jpeg'
       },
       {
-        url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-        caption: {
-          id: 'Optimasi Tampilan Responsif Mobile & Desktop',
-          eng: 'Mobile & Desktop Responsive Layout Optimization'
-        }
+        url: '/Distrik_2.jpeg'
       }
     ],
     desc: {
