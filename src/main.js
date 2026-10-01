@@ -11,7 +11,7 @@ import { initSkillsTabs } from './components/skills.js';
 import { SkillsPuzzleEngine } from './components/puzzle.js';
 import { renderProjects, initProjectFilters, initModalEvents } from './components/projects.js';
 import { renderExperience, initExperienceModalEvents } from './components/experience.js';
-import { renderJournals } from './components/journals.js';
+import { renderJournals, initJournalModalEvents } from './components/journals.js';
 import { initContactForm, initClock } from './components/contact.js';
 import { UpsideDownAtmosphere } from './components/strangerThings.js';
 
@@ -111,6 +111,7 @@ function initApp() {
   // 8. Initialize Scientific Journals Section (3x2 Grid + Pagination)
   try {
     renderJournals(1);
+    initJournalModalEvents();
   } catch (e) {
     console.error('Journals init error:', e);
   }

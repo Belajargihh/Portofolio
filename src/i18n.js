@@ -89,6 +89,9 @@ export const translations = {
       tag: 'PUBLIKASI ILMIAH',
       title: 'Artikel & <span class="text-gradient">Jurnal Penelitian</span>',
       readJournal: 'Baca Jurnal / PDF',
+      viewDetails: 'Lihat Detail',
+      modalAbstract: 'Abstrak Penelitian',
+      modalTags: 'Topik & Kata Kunci',
       prev: 'Prev',
       next: 'Next'
     },
@@ -204,6 +207,9 @@ export const translations = {
       tag: 'SCIENTIFIC PUBLICATIONS',
       title: 'Articles & <span class="text-gradient">Research Journals</span>',
       readJournal: 'Read Journal / PDF',
+      viewDetails: 'View Details',
+      modalAbstract: 'Research Abstract',
+      modalTags: 'Topics & Keywords',
       prev: 'Prev',
       next: 'Next'
     },
