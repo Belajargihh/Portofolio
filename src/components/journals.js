@@ -89,11 +89,12 @@ export function openJournalModal(journal) {
   const lang = getCurrentLang();
   const title = localize(journal.title, lang);
   const abstract = localize(journal.abstract, lang);
-  const doiUrl = (journal.doi || '').startsWith('http') ? journal.doi : `https://doi.org/${journal.doi}`;
+  const doiUrl = journal.doiUrl || ((journal.doi || '').startsWith('http') ? journal.doi : `https://doi.org/${journal.doi}`);
   const readJournalText = getTranslation('journals.readJournal', lang) || 'Baca Jurnal / PDF';
   const modalAbstractText = getTranslation('journals.modalAbstract', lang) || 'Abstrak Penelitian';
   const modalTagsText = getTranslation('journals.modalTags', lang) || 'Topik & Kata Kunci';
   const liveDemoText = getTranslation('projects.liveDemo', lang) || 'Live Demo';
+  const liveBtnLabel = journal.liveLabel ? localize(journal.liveLabel, lang) : liveDemoText;
 
   modalBody.innerHTML = `
     <div class="journal-modal-header">
@@ -125,7 +126,7 @@ export function openJournalModal(journal) {
     ${journal.doi ? `
       <div class="journal-modal-doi">
         <strong>DOI:</strong>
-        <a href="${doiUrl}" target="_blank" rel="noopener" class="doi-link" title="Buka DOI artikel">
+        <a href="${doiUrl}" target="_blank" rel="noopener" class="doi-link" title="Buka tautan artikel">
           <span>${journal.doi}</span>
           <i data-lucide="external-link" style="width:13px; height:13px; display:inline-block;"></i>
         </a>
@@ -140,7 +141,7 @@ export function openJournalModal(journal) {
       ${journal.liveUrl ? `
         <a href="${journal.liveUrl}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
           <i data-lucide="external-link"></i>
-          <span>${liveDemoText}</span>
+          <span>${liveBtnLabel}</span>
         </a>
       ` : ''}
     </div>

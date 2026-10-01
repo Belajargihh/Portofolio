@@ -2193,14 +2193,20 @@ h1, h2, h3, h4, h5, h6 {
 /* Journals Section & Grid */
 #journals-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  #journals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
   #journals-grid {
     grid-template-columns: 1fr;
     gap: 16px;

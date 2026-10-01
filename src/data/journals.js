@@ -39,5 +39,28 @@ export const journalsData = [
       eng: 'This research analyzes and benchmarks the performance of Convolutional Neural Network (CNN) pre-trained model architectures in classifying facial skin types and conditions for automated Computer Vision-based analysis.'
     },
     pdfUrl: 'https://doi.org/10.25126/jtiik.2026133'
+  },
+  {
+    id: 203,
+    title: {
+      id: 'Analisis Kawasan Rawan Bencana Gempa Bumi di Papua Barat Daya Menggunakan Metode Polygon Pada Aplikasi QGIS',
+      eng: 'Analysis of Earthquake Disaster-Prone Areas in Southwest Papua Using the Polygon Method in QGIS Application'
+    },
+    publisher: 'Framework: Jurnal Ilmu Komputer dan Informatika (Vol. 4 No. 01)',
+    year: '2026',
+    accreditation: '',
+    doi: '10.33506/framework.v4i01.6142',
+    doiUrl: 'https://www.ejournal.um-sorong.ac.id/index.php/jiki/article/view/6142',
+    tags: ['Sistem Informasi Geografis', 'QGIS', 'Polygon Method', 'Gempa Bumi', 'Papua Barat Daya'],
+    abstract: {
+      id: 'Papua Barat Daya merupakan salah satu provinsi baru di Indonesia yang terletak di kawasan rawan gempa, karena berada di jalur pertemuan lempeng Indonesia-Australia dan Pasifik serta dilewati oleh Sesar Sorong aktif. Penelitian ini bertujuan untuk mengenali dan memetakan wilayah-wilayah yang rentan terhadap gempa bumi di Papua Barat Daya, dengan memanfaatkan pendekatan spasial berbasis Sistem Informasi Geografis (SIG) melalui perangkat lunak QGIS dengan metode polygon untuk mengklasifikasikan tingkat kerawanan wilayah menjadi zona rendah, sedang, dan tinggi.',
+      eng: 'Southwest Papua is an earthquake-prone province located at the junction of the Indo-Australian and Pacific tectonic plates and traversed by the active Sorong Fault. This study aims to identify and map earthquake-vulnerable zones across Southwest Papua utilizing Geographic Information Systems (GIS) with QGIS software and the polygon method to classify risk zones into low, moderate, and high hazard levels.'
+    },
+    pdfUrl: 'https://www.ejournal.um-sorong.ac.id/index.php/jiki/article/download/6142/2851',
+    liveUrl: 'https://www.ejournal.um-sorong.ac.id/index.php/jiki/article/view/6142',
+    liveLabel: {
+      id: 'Web Jurnal / OJS',
+      eng: 'Journal Website / OJS'
+    }
   }
 ];
