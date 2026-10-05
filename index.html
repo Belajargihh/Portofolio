@@ -44,6 +44,7 @@
         <a href="#about" class="nav-link" data-cursor="pointer" data-i18n="nav.about">Tentang</a>
         <a href="#skills" class="nav-link" data-cursor="pointer" data-i18n="nav.skills">Keahlian</a>
         <a href="#projects" class="nav-link" data-cursor="pointer" data-i18n="nav.projects">Proyek</a>
+        <a href="#certifications" class="nav-link" data-cursor="pointer" data-i18n="nav.certifications">Sertifikat</a>
         <a href="#experience" class="nav-link" data-cursor="pointer" data-i18n="nav.experience">Pengalaman</a>
         <a href="#journals" class="nav-link" data-cursor="pointer" data-i18n="nav.journals">Jurnal</a>
         <a href="#contact" class="nav-link" data-cursor="pointer" data-i18n="nav.contact">Kontak</a>
@@ -391,6 +392,33 @@
       </div>
     </section>
 
+    <!-- CERTIFICATIONS SECTION (Featured Project 3D Deck Style) -->
+    <section id="certifications" class="projects-section certifications-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <div class="section-tag">
+              <i data-lucide="award"></i>
+              <span data-i18n="certifications.tag">LISENSI & SERTIFIKASI</span>
+            </div>
+            <h2 class="section-title" data-i18n="certifications.title">Sertifikasi & <span class="text-gradient">Lisensi Resmi</span></h2>
+          </div>
+          
+          <div class="project-filters certificate-filters">
+            <button class="filter-btn active" data-filter="all" data-cursor="pointer" data-i18n="certifications.tabAll">Semua</button>
+            <button class="filter-btn" data-filter="web" data-cursor="pointer" data-i18n="certifications.tabWeb">Web Development</button>
+            <button class="filter-btn" data-filter="freecodecamp" data-cursor="pointer">freeCodeCamp</button>
+          </div>
+        </div>
+
+        <!-- 3D Stack Stage Container for Certificates -->
+        <div class="projects-grid" id="certifications-grid"></div>
+
+        <!-- Pagination Controls for Certificates -->
+        <div class="pagination-wrapper" id="certifications-pagination"></div>
+      </div>
+    </section>
+
     <!-- EXPERIENCE / PAST PROJECTS SECTION (3x2 Grid + Pagination) -->
     <section id="experience" class="timeline-section">
       <div class="section-container">
@@ -519,6 +547,14 @@
     <div class="modal-content journal-modal-content">
       <button class="modal-close" id="journal-modal-close" data-cursor="pointer"><i data-lucide="x"></i></button>
       <div id="journal-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Certificate Detail Modal -->
+  <div id="certificate-modal" class="modal-backdrop">
+    <div class="modal-content certificate-modal-content">
+      <button class="modal-close" id="certificate-modal-close" data-cursor="pointer"><i data-lucide="x"></i></button>
+      <div id="certificate-modal-body"></div>
     </div>
   </div>
 

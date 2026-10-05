@@ -10,6 +10,7 @@ import { TypewriterEngine } from './components/typing.js';
 import { initSkillsTabs } from './components/skills.js';
 import { SkillsPuzzleEngine } from './components/puzzle.js';
 import { renderProjects, initProjectFilters, initModalEvents } from './components/projects.js';
+import { renderCertifications, initCertificateFilters, initCertificateModalEvents } from './components/certifications.js';
 import { renderExperience, initExperienceModalEvents } from './components/experience.js';
 import { renderJournals, initJournalModalEvents } from './components/journals.js';
 import { initContactForm, initClock } from './components/contact.js';
@@ -98,6 +99,15 @@ function initApp() {
     initModalEvents();
   } catch (e) {
     console.error('Projects init error:', e);
+  }
+
+  // 6b. Initialize Certifications Showcase (Featured Project 3D Deck Style)
+  try {
+    renderCertifications('all', 0);
+    initCertificateFilters();
+    initCertificateModalEvents();
+  } catch (e) {
+    console.error('Certifications init error:', e);
   }
 
   // 7. Initialize Experience / Past Projects (Interactive Alternating Timeline)

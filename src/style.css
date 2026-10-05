@@ -3600,6 +3600,211 @@ h1, h2, h3, h4, h5, h6 {
   background: radial-gradient(circle 800px at 50% 30%, rgba(239, 68, 68, 0.38), rgba(185, 28, 28, 0.16) 45%, transparent 80%);
 }
 
+/* ==========================================================================
+   CERTIFICATIONS SECTION (FEATURED PROJECT 3D DECK STYLE)
+   ========================================================================== */
+
+.cert-stack-card {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 35px rgba(245, 158, 11, 0.12);
+}
+
+.cert-stack-card.is-active:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(245, 158, 11, 0.35);
+}
+
+.cert-card-pill {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  color: #fbbf24 !important;
+}
+
+.cert-card-pill svg {
+  color: #fde68a !important;
+}
+
+.cert-card-img-wrapper {
+  height: 310px;
+  background: #060911;
+}
+
+.cert-card-img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.cert-issuer-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #94a3b8;
+  font-family: var(--font-body);
+}
+
+.cert-issuer-icon {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.6));
+}
+
+.cert-issuer-name {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.cert-meta-dot {
+  opacity: 0.4;
+}
+
+.cert-issue-date {
+  color: var(--text-dim);
+}
+
+.cert-tag {
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  color: #fef08a !important;
+}
+
+.cert-stack-dot.active {
+  background: linear-gradient(90deg, #f59e0b 0%, #ef4444 100%) !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6) !important;
+}
+
+/* Certificate Detail Modal Styles */
+.certificate-modal-content {
+  max-width: 860px;
+}
+
+.cert-modal-preview-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 22px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  background: #070a12;
+}
+
+.cert-modal-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.cert-modal-overlay-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f8fafc;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cert-modal-overlay-badge:hover {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #fbbf24;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.cert-modal-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.cert-meta-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cert-meta-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.cert-meta-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cert-mini-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.cert-competencies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cert-competencies-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.93rem;
+  color: #cbd5e1;
+  line-height: 1.55;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.cert-competencies-list li svg {
+  width: 16px;
+  height: 16px;
+  color: #34d399;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+@media (max-width: 768px) {
+  .cert-card-img-wrapper {
+    height: 230px;
+  }
+  .cert-modal-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 
 
 
