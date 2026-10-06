@@ -386,7 +386,7 @@ export function openCertModal(id) {
         <i data-lucide="file-text"></i>
         <span>${openPdfLabel}</span>
       </a>
-      <a href="${cert.pdfUrl}" download="Responsive-Web-Design-Billy-Jes.pdf" class="btn btn-outline btn-sm">
+      <a href="${cert.pdfUrl}" download="${(cert.title?.eng || 'Certificate').replace(/[^a-zA-Z0-9]/g, '-')}-Billy-Jes.pdf" class="btn btn-outline btn-sm">
         <i data-lucide="download"></i>
         <span>${downloadPdfLabel}</span>
       </a>` : ''}
