@@ -56,7 +56,7 @@ export function renderCertifications(filter = currentCertFilter, initialIndex = 
     const certNum = idx < 9 ? `'0${idx + 1}` : `'${idx + 1}`;
 
     cardsHtml += `
-      <div class="project-stack-card cert-stack-card" data-index="${idx}" data-cursor="pointer">
+      <div class="cert-stack-card" data-index="${idx}" data-cursor="pointer">
         <!-- Top Pill Tag & Year/Number badge -->
         <div class="stack-card-badge-row cert-card-badge-row">
           <span class="stack-card-pill cert-card-pill">
@@ -143,7 +143,9 @@ export function renderCertifications(filter = currentCertFilter, initialIndex = 
 }
 
 function updateCertStackPositions() {
-  const cards = document.querySelectorAll('.cert-stack-card');
+  const container = document.getElementById('certifications-grid');
+  if (!container) return;
+  const cards = container.querySelectorAll('.cert-stack-card');
   const total = cards.length;
   if (!total) return;
 
@@ -192,9 +194,12 @@ function updateCertStackPositions() {
   });
 
   // Update dots indicator
-  document.querySelectorAll('.cert-stack-dot').forEach((dot, idx) => {
-    dot.classList.toggle('active', idx === activeCertIndex);
-  });
+  const paginationContainer = document.getElementById('certifications-pagination');
+  if (paginationContainer) {
+    paginationContainer.querySelectorAll('.cert-stack-dot').forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeCertIndex);
+    });
+  }
 
   // Update Prev / Next buttons
   const prevBtn = document.getElementById('cert-stack-prev-btn');
@@ -272,7 +277,9 @@ function renderCertStackControls(container, total, currentIndex) {
 }
 
 export function initCertificateFilters() {
-  const filterBtns = document.querySelectorAll('.certificate-filters .filter-btn');
+  const filterContainer = document.querySelector('#certifications .certificate-filters');
+  if (!filterContainer) return;
+  const filterBtns = filterContainer.querySelectorAll('.filter-btn');
 
   filterBtns.forEach(btn => {
     const filter = btn.getAttribute('data-filter');

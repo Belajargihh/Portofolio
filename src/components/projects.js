@@ -135,7 +135,9 @@ export function renderProjects(filter = currentFilter, initialIndex = 0) {
 }
 
 function updateStackPositions() {
-  const cards = document.querySelectorAll('.project-stack-card');
+  const container = document.getElementById('projects-grid');
+  if (!container) return;
+  const cards = container.querySelectorAll('.project-stack-card');
   const total = cards.length;
   if (!total) return;
 
@@ -188,9 +190,12 @@ function updateStackPositions() {
   });
 
   // Update dots indicator
-  document.querySelectorAll('.stack-dot').forEach((dot, idx) => {
-    dot.classList.toggle('active', idx === activeProjectIndex);
-  });
+  const paginationContainer = document.getElementById('projects-pagination');
+  if (paginationContainer) {
+    paginationContainer.querySelectorAll('.stack-dot').forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeProjectIndex);
+    });
+  }
 
   // Update Prev / Next buttons disabled states
   const prevBtn = document.getElementById('stack-prev-btn');
@@ -269,7 +274,9 @@ function renderStackControls(container, total, currentIndex) {
 }
 
 export function initProjectFilters() {
-  const filterBtns = document.querySelectorAll('.project-filters .filter-btn');
+  const filterContainer = document.querySelector('#projects .project-filters');
+  if (!filterContainer) return;
+  const filterBtns = filterContainer.querySelectorAll('.filter-btn');
 
   filterBtns.forEach(btn => {
     const filter = btn.getAttribute('data-filter');

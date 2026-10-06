@@ -1499,7 +1499,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Individual 3D Stacking Card */
-.project-stack-card {
+.project-stack-card,
+.cert-stack-card {
   position: absolute;
   width: 560px;
   max-width: 92vw;
@@ -1526,7 +1527,13 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(239, 68, 68, 0.35);
 }
 
-.project-stack-card.is-hidden {
+.cert-stack-card.is-active:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(245, 158, 11, 0.35);
+}
+
+.project-stack-card.is-hidden,
+.cert-stack-card.is-hidden {
   display: none !important;
 }
 
@@ -1584,7 +1591,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.6s ease;
 }
 
-.project-stack-card.is-active:hover .stack-card-img {
+.project-stack-card.is-active:hover .stack-card-img,
+.cert-stack-card.is-active:hover .stack-card-img {
   transform: scale(1.06);
 }
 
@@ -1604,7 +1612,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.3s ease;
 }
 
-.project-stack-card.is-active:hover .stack-card-overlay {
+.project-stack-card.is-active:hover .stack-card-overlay,
+.cert-stack-card.is-active:hover .stack-card-overlay {
   opacity: 1;
 }
 
@@ -1716,7 +1725,8 @@ h1, h2, h3, h4, h5, h6 {
     height: 460px;
   }
 
-  .project-stack-card {
+  .project-stack-card,
+  .cert-stack-card {
     width: 360px;
     border-radius: 20px;
   }
