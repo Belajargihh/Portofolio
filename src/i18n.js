@@ -24,6 +24,8 @@ export const translations = {
       greeting: 'Halo! Saya <span class="text-gradient">Billy Jes</span>,',
       description: 'Lulusan baru (Fresh Graduate) bersemangat tinggi di bidang Web Development & Software Engineering. Siap berkontribusi membangun aplikasi web modern, interaktif, dan berkualitas tinggi.',
       downloadCv: 'Download CV',
+      cvUrl: '/CV - Billy Jes-id.pdf',
+      cvFileName: 'CV - Billy Jes-id.pdf',
       scrollDown: 'Scroll Down',
       typewriter: [
         'Fresh Graduate Berprestasi',
@@ -164,6 +166,8 @@ export const translations = {
       greeting: 'Hi! I\'m <span class="text-gradient">Billy Jes</span>,',
       description: 'An ambitious Fresh Graduate in Web Development & Software Engineering. Ready to contribute to building modern, interactive, and high-quality web applications.',
       downloadCv: 'Download CV',
+      cvUrl: '/CV - Billy Jes-eng.pdf',
+      cvFileName: 'CV - Billy Jes-eng.pdf',
       scrollDown: 'Scroll Down',
       typewriter: [
         'Junior Full-Stack Developer',
@@ -369,6 +373,16 @@ export function applyTranslations(lang = currentLang) {
     } else {
       btn.classList.remove('active');
     }
+  });
+
+  // Dynamically update CV download links based on active language
+  const isEng = lang === 'eng';
+  const cvTargetUrl = isEng ? '/CV - Billy Jes-eng.pdf' : '/CV - Billy Jes-id.pdf';
+  const cvTargetFileName = isEng ? 'CV - Billy Jes-eng.pdf' : 'CV - Billy Jes-id.pdf';
+  const cvDownloadElements = document.querySelectorAll('.cv-pill, [data-cv-download], #cv-download-btn');
+  cvDownloadElements.forEach(el => {
+    el.setAttribute('href', cvTargetUrl);
+    el.setAttribute('download', cvTargetFileName);
   });
 
   // Re-run Lucide icons if available
