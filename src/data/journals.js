@@ -32,13 +32,19 @@ export const journalsData = [
     year: '2026',
     accreditation: 'SINTA 2',
     doi: '10.25126/jtiik.2026133',
+    doiUrl: 'https://jtiik.ub.ac.id/index.php/jtiik/id/article/view/10366',
     tags: ['Convolutional Neural Network', 'CNN', 'Deep Learning', 'Computer Vision', 'Python'],
     image: '/jurnal-kulit-wajah.png',
     abstract: {
       id: 'Penelitian ini menganalisis dan membandingkan performa arsitektur pre-trained model Convolutional Neural Network (CNN) dalam mengklasifikasikan jenis dan kondisi kulit wajah untuk deteksi dan analisis otomatis berbasis Computer Vision.',
       eng: 'This research analyzes and benchmarks the performance of Convolutional Neural Network (CNN) pre-trained model architectures in classifying facial skin types and conditions for automated Computer Vision-based analysis.'
     },
-    pdfUrl: 'https://doi.org/10.25126/jtiik.2026133'
+    pdfUrl: 'https://jtiik.ub.ac.id/index.php/jtiik/id/article/view/10366',
+    liveUrl: 'https://jtiik.ub.ac.id/index.php/jtiik/id/article/view/10366',
+    liveLabel: {
+      id: 'Web Jurnal / OJS',
+      eng: 'Journal Website / OJS'
+    }
   },
   {
     id: 203,
