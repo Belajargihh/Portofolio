@@ -92,8 +92,8 @@ export const translations = {
       hours: 'Beban Kurikulum',
       credentialId: 'ID Kredensial',
       competencies: 'Kompetensi & Proyek yang Diselesaikan:',
-      emptyTitle: 'Belum ada sertifikat di kategori ini.',
-      emptySub: 'Sertifikat baru akan segera ditambahkan.',
+      emptyTitle: 'Belum ada sertifikat yang ditampilkan.',
+      emptySub: 'Sertifikat dan lisensi resmi akan segera diperbarui.',
       prev: 'Prev',
       next: 'Next'
     },
@@ -234,8 +234,8 @@ export const translations = {
       hours: 'Curriculum Effort',
       credentialId: 'Credential ID',
       competencies: 'Competencies & Completed Projects:',
-      emptyTitle: 'No certificates in this category yet.',
-      emptySub: 'New certificates will be added soon.',
+      emptyTitle: 'No certificates displayed yet.',
+      emptySub: 'Official certificates and credentials will be updated soon.',
       prev: 'Prev',
       next: 'Next'
     },

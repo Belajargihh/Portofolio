@@ -763,21 +763,26 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.social-icon-btn img {
+.social-icon-btn img,
+.social-icon-btn svg {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   transition: transform 0.25s ease, filter 0.25s ease;
+  fill: #ffffff;
+}
+
+.social-icon-btn img {
+  filter: brightness(0) invert(1);
 }
 
 .social-icon-btn:hover {
   transform: translateY(-4px) scale(1.08);
 }
 
-.social-icon-btn:hover img {
+.social-icon-btn:hover img,
+.social-icon-btn:hover svg {
   transform: scale(1.15);
-  filter: brightness(0) invert(1);
 }
 
 /* Custom Tooltip on Hover */
@@ -859,10 +864,16 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
 }
 
-.social-icon-btn.cv-pill img {
+.social-icon-btn.cv-pill img,
+.social-icon-btn.cv-pill svg {
   width: 18px;
   height: 18px;
   filter: none;
+}
+
+.social-icon-btn.cv-pill svg {
+  fill: none;
+  stroke: #ffffff;
 }
 
 .social-icon-btn.cv-pill:hover {
@@ -2903,7 +2914,8 @@ h1, h2, h3, h4, h5, h6 {
     height: 44px;
   }
 
-  .social-icon-btn img {
+  .social-icon-btn img,
+  .social-icon-btn svg {
     width: 20px;
     height: 20px;
   }
@@ -3392,7 +3404,8 @@ h1, h2, h3, h4, h5, h6 {
     height: 40px;
   }
 
-  .social-icon-btn img {
+  .social-icon-btn img,
+  .social-icon-btn svg {
     width: 18px;
     height: 18px;
   }

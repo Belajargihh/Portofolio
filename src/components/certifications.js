@@ -24,10 +24,10 @@ export function renderCertifications(filter = currentCertFilter, initialIndex = 
   if (filteredCerts.length === 0) {
     container.className = 'projects-grid';
     container.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; color: var(--text-muted);">
-        <i data-lucide="award" style="width: 48px; height: 48px; margin: 0 auto 16px; display: block; opacity: 0.5;"></i>
-        <p style="font-size: 1.1rem; margin-bottom: 8px;">${getTranslation('certifications.emptyTitle') || 'Belum ada sertifikat di kategori ini.'}</p>
-        <p style="font-size: 0.9rem; opacity: 0.7;">${getTranslation('certifications.emptySub') || 'Sertifikat baru akan segera ditambahkan.'}</p>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 60px 24px; color: var(--text-muted); background: rgba(15, 23, 42, 0.4); border: 1px dashed var(--border-color); border-radius: var(--radius-lg); margin: 20px 0;">
+        <i data-lucide="award" style="width: 52px; height: 52px; margin: 0 auto 16px; display: block; opacity: 0.35; color: var(--accent-red);"></i>
+        <p style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main);">${getTranslation('certifications.emptyTitle') || 'Belum ada sertifikat yang ditampilkan.'}</p>
+        <p style="font-size: 0.95rem; opacity: 0.7; max-width: 480px; margin: 0 auto;">${getTranslation('certifications.emptySub') || 'Sertifikat dan lisensi resmi akan segera diperbarui.'}</p>
       </div>
     `;
     if (paginationContainer) paginationContainer.innerHTML = '';
@@ -279,6 +279,13 @@ function renderCertStackControls(container, total, currentIndex) {
 export function initCertificateFilters() {
   const filterContainer = document.querySelector('#certifications .certificate-filters');
   if (!filterContainer) return;
+
+  if (certificationsData.length === 0) {
+    filterContainer.style.display = 'none';
+    return;
+  }
+  filterContainer.style.display = '';
+
   const filterBtns = filterContainer.querySelectorAll('.filter-btn');
 
   filterBtns.forEach(btn => {

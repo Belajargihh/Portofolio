@@ -2,7 +2,11 @@
    DATA SERTIFIKASI & LISENSI (CERTIFICATIONS DATA - BILINGUAL ID & ENG)
    ========================================================================== */
 
-export const certificationsData = [
+// Isi sertifikat dikosongkan sesuai permintaan
+export const certificationsData = [];
+
+// Arsip data sertifikat (dapat dikembalikan sewaktu-waktu jika diperlukan):
+export const archivedCertificationsData = [
   {
     id: 1,
     title: {
