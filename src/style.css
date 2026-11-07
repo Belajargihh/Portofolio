@@ -1959,10 +1959,43 @@ h1, h2, h3, h4, h5, h6 {
 /* Action: Lihat Detail Button */
 .timeline-card-actions {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 6px;
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.timeline-live-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6.5px 15px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.timeline-live-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+}
+
+.timeline-live-btn svg {
+  width: 13px;
+  height: 13px;
 }
 
 .timeline-detail-btn {
@@ -2178,6 +2211,15 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(15, 23, 42, 0.9);
   line-height: 1.4;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.exp-modal-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* Mobile Responsive Timeline */

@@ -56,6 +56,12 @@ export function renderExperience() {
               <span>${viewDetailText}</span>
               <i data-lucide="chevron-down"></i>
             </button>
+            ${item.liveUrl ? `
+              <a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer" class="timeline-live-btn" onclick="event.stopPropagation();" data-cursor="pointer" title="${item.liveLabel ? localize(item.liveLabel, lang) : (lang === 'eng' ? 'Visit Website' : 'Lihat Website')}">
+                <i data-lucide="external-link"></i>
+                <span>${item.liveLabel ? localize(item.liveLabel, lang) : (lang === 'eng' ? 'Visit Website' : 'Lihat Website')}</span>
+              </a>
+            ` : ''}
           </div>
         </div>
       </div>
@@ -167,6 +173,16 @@ export function openExperienceModal(item) {
             `;
           }).join('')}
         </div>
+      </div>
+    ` : ''}
+
+    <!-- Action Button / Live Link -->
+    ${item.liveUrl ? `
+      <div class="exp-modal-actions">
+        <a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-cursor="pointer">
+          <i data-lucide="external-link"></i>
+          <span>${item.liveLabel ? localize(item.liveLabel, lang) : (lang === 'eng' ? 'Visit Website' : 'Buka Website')}</span>
+        </a>
       </div>
     ` : ''}
   `;

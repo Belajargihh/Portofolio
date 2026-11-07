@@ -29,12 +29,25 @@ export const experienceData = [
     },
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Web', 'Government'],
     image: '/Distrik_1.jpeg',
+    liveUrl: 'https://distrik-sortim.vercel.app/',
+    liveLabel: {
+      id: 'Buka Website Distrik',
+      eng: 'Visit District Website'
+    },
     documentation: [
       {
-        url: '/Distrik_1.jpeg'
+        url: '/Distrik_1.jpeg',
+        caption: {
+          id: 'Tampilan Beranda Website Resmi Distrik Sorong Timur',
+          eng: 'Official Homepage of Sorong Timur District Website'
+        }
       },
       {
-        url: '/Distrik_2.jpeg'
+        url: '/Distrik_2.jpeg',
+        caption: {
+          id: 'Struktur Organisasi & Informasi Kedistrikan',
+          eng: 'Organizational Structure & District Information'
+        }
       }
     ],
     desc: {
@@ -82,20 +95,25 @@ export const experienceData = [
       eng: 'TBM Information System & Management Platform'
     },
     tags: ['HTML', 'JavaScript', 'Supabase', 'PostgreSQL', 'Vercel', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+    image: '/tbm-dashboard.jpg',
+    liveUrl: 'https://forumtbm.vercel.app/',
+    liveLabel: {
+      id: 'Buka Web Forum TBM',
+      eng: 'Visit Forum TBM Web'
+    },
     documentation: [
       {
-        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        url: '/tbm-dashboard.jpg',
         caption: {
-          id: 'Dashboard Analisis & Manajemen Data Multi-Role TBM',
-          eng: 'Multi-Role Analytics & Data Management Dashboard'
+          id: 'Dashboard Sistem Informasi & Pengaturan Akun Anggota TBM',
+          eng: 'TBM Information System & Member Account Dashboard'
         }
       },
       {
-        url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop',
+        url: '/tbm-meeting.jpg',
         caption: {
-          id: 'Kolaborasi Tim Development & Pengujian Sistem Database',
-          eng: 'Dev Team Collaboration & Database System Testing'
+          id: 'Kolaborasi & Rapat Koordinasi Tim Development TBM',
+          eng: 'TBM Development Team Collaboration & Online Meeting'
         }
       }
     ],
